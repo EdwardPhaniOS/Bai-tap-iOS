@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,7 +61,6 @@
                             <textField opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RO6-YI-c8J">
                                 <rect key="frame" x="137" y="115" width="257" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                 <connections>
@@ -73,7 +70,6 @@
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XQ3-DE-idS">
                                 <rect key="frame" x="137" y="69" width="257" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                 <connections>
@@ -132,9 +128,6 @@
                                     <segment title="4"/>
                                     <segment title="5"/>
                                 </segments>
-                                <connections>
-                                    <action selector="segmentValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="X87-EN-6br"/>
-                                </connections>
                             </segmentedControl>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wct-2y-5g0">
                                 <rect key="frame" x="20" y="619" width="374" height="243"/>
@@ -180,6 +173,7 @@
                         <outlet property="genderLabel" destination="vdI-cM-7EA" id="rMp-Lf-BDG"/>
                         <outlet property="lastnameTextField" destination="RO6-YI-c8J" id="nT1-0G-563"/>
                         <outlet property="loadingIndicator" destination="L4R-5h-nIm" id="Uzb-vC-RD7"/>
+                        <outlet property="numberOfCompanySegment" destination="2W0-oL-ney" id="dWW-4D-cgT"/>
                         <outlet property="progressBar" destination="Lk7-nR-mhq" id="vcz-Xa-YKP"/>
                         <outlet property="summaryTextView" destination="wct-2y-5g0" id="Mp3-JZ-lX9"/>
                     </connections>

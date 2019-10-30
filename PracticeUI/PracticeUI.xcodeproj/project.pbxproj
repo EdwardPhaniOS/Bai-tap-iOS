@@ -293,6 +293,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Vinh.PracticeUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_LANGUAGE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -309,6 +310,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Vinh.PracticeUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_LANGUAGE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
