@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8708965723706D02000FBB86 /* ListCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8708965623706D02000FBB86 /* ListCardController.swift */; };
 		87FDE035236092DE003833CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FDE034236092DE003833CD /* AppDelegate.swift */; };
 		87FDE037236092DE003833CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FDE036236092DE003833CD /* SceneDelegate.swift */; };
 		87FDE039236092DE003833CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FDE038236092DE003833CD /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8708965623706D02000FBB86 /* ListCardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListCardController.swift; path = ../../../UITableView/UITableView/ListCardController.swift; sourceTree = "<group>"; };
 		87FDE031236092DE003833CD /* GameBaiCao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBaiCao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FDE034236092DE003833CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87FDE036236092DE003833CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				87FDE036236092DE003833CD /* SceneDelegate.swift */,
 				87FDE04C236094EE003833CD /* Model */,
 				87FDE038236092DE003833CD /* ViewController.swift */,
+				8708965623706D02000FBB86 /* ListCardController.swift */,
 				87FDE03A236092DE003833CD /* Main.storyboard */,
 				87FDE03D236092DF003833CD /* Assets.xcassets */,
 				87FDE03F236092DF003833CD /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 				87FDE035236092DE003833CD /* AppDelegate.swift in Sources */,
 				87FDE037236092DE003833CD /* SceneDelegate.swift in Sources */,
 				87FDE0492360947D003833CD /* Card.swift in Sources */,
+				8708965723706D02000FBB86 /* ListCardController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
