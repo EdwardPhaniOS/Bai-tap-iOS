@@ -8,6 +8,7 @@
 
 #import "MyTableViewCell.h"
 
+
 @implementation MyTableViewCell
 
 - (void)awakeFromNib {
@@ -19,6 +20,24 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    self.image.image = nil;
+    self.detailLabel.text = nil;
+    self.detailLabel.text = nil;
+}
+
+- (void)visualizeCell: (Coin*) coin {
+    
+    [self.titleLabel setText:coin.name];
+    [self.detailLabel setText:coin.detail];
+    
+    UIImage *image = [UIImage imageNamed:coin.imageName];
+    [self.image setImage:image];
+    
 }
 
 @end

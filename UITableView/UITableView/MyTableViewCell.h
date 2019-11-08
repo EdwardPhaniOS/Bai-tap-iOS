@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Coin.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyTableViewCell : UITableViewCell
+@interface MyTableViewCell : UITableViewCell {
+    
+    NSMutableArray *selectedArray;
+    
+}
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 
+- (void)visualizeCell: (Coin*) coin;
 
 @end
 

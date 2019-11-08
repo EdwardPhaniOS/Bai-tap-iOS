@@ -20,7 +20,8 @@
     [super viewDidLoad];
     
     self.myTableView.dataSource = self;
-    
+    self.myTableView.delegate = self;
+        
     _myTableView.estimatedRowHeight = 80;
     _myTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -30,6 +31,15 @@
     Coin *coin4 = [[Coin alloc] initWithName:@"coin4" detail:@"digital coin4" imageName:@"pic4"];
     
     myCoins = [[NSMutableArray alloc] initWithObjects:coin1, coin2, coin3, coin4, nil];
+    
+    selectedCoins = [[NSMutableArray alloc] init];
+    for (int i = 0; i < myCoins.count; i++) {
+        NSLog(@"%i", i);
+        [selectedCoins addObject:@"false"];
+    }
+  
+    
+    [_myTableView allowsMultipleSelection];
 }
 
 
@@ -101,11 +111,14 @@
         Coin *coin = myCoins[indexPath.row];
         if (coin != nil) {
             
-            [myCell.titleLabel setText:coin.name];
-            [myCell.detailLabel setText:coin.detail];
+            [myCell visualizeCell:coin];
             
-            UIImage *image = [UIImage imageNamed:coin.imageName];
-            [myCell.image setImage:image];
+            if ([selectedCoins[indexPath.row] isEqualToString:@"true"]) {
+                [myCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            } else {
+                 [myCell setAccessoryType:UITableViewCellAccessoryNone];
+            }
+            
         }
         
         return myCell;
@@ -141,5 +154,42 @@
     [myCoins insertObject:coin atIndex:rowDes];
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    switch (indexPath.row) {
+        case 0:
+            return 50;
+            break;
+        case 1:
+            return 70;
+            break;
+        case 2:
+            return 80;
+            break;
+        case 3:
+            return 90;
+            break;
+        default:
+            return 100;
+            break;
+    }
+}
+
+//MARK: - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    
+    if ([selectedCoins[indexPath.row] isEqualToString:@"true"]) {
+         selectedCoins[indexPath.row] = @"false";
+    } else {
+         selectedCoins[indexPath.row] = @"true";
+    }
+   
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 
 @end

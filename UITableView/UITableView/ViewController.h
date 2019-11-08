@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ViewController : UIViewController <UITableViewDataSource> {
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>  {
     NSMutableArray *myCoins;
+    NSMutableArray *selectedCoins;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
@@ -20,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)EditPressed:(UIButton *)sender;
 - (IBAction)updatePressed:(UIButton *)sender;
 - (IBAction)reloadData:(UIButton *)sender;
+
+
 
 @end
 
