@@ -14,6 +14,9 @@
 		871DE9BF2375AE8E00A00FC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871DE9BE2375AE8E00A00FC1 /* Assets.xcassets */; };
 		871DE9C22375AE8E00A00FC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871DE9C02375AE8E00A00FC1 /* LaunchScreen.storyboard */; };
 		871DE9C52375AE8E00A00FC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 871DE9C42375AE8E00A00FC1 /* main.m */; };
+		8729350423796E370068E584 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729350323796E370068E584 /* UserInfo.m */; };
+		87293507237971F70068E584 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87293506237971F70068E584 /* InfoCell.m */; };
+		87F33CA82379A2C3005DCF9B /* DummyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F33CA72379A2C3005DCF9B /* DummyTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,12 @@
 		871DE9C12375AE8E00A00FC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		871DE9C32375AE8E00A00FC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871DE9C42375AE8E00A00FC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8729350223796E370068E584 /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		8729350323796E370068E584 /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		87293505237971F70068E584 /* InfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
+		87293506237971F70068E584 /* InfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
+		87F33CA62379A2C3005DCF9B /* DummyTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyTableViewController.h; sourceTree = "<group>"; };
+		87F33CA72379A2C3005DCF9B /* DummyTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +74,11 @@
 				871DE9B32375AE8D00A00FC1 /* AppDelegate.m */,
 				871DE9B52375AE8D00A00FC1 /* SceneDelegate.h */,
 				871DE9B62375AE8D00A00FC1 /* SceneDelegate.m */,
-				871DE9B82375AE8D00A00FC1 /* ViewController.h */,
-				871DE9B92375AE8D00A00FC1 /* ViewController.m */,
+				8729350223796E370068E584 /* UserInfo.h */,
+				8729350323796E370068E584 /* UserInfo.m */,
+				87F33CA52379A290005DCF9B /* Controllers */,
+				87293505237971F70068E584 /* InfoCell.h */,
+				87293506237971F70068E584 /* InfoCell.m */,
 				871DE9BB2375AE8D00A00FC1 /* Main.storyboard */,
 				871DE9BE2375AE8E00A00FC1 /* Assets.xcassets */,
 				871DE9C02375AE8E00A00FC1 /* LaunchScreen.storyboard */,
@@ -74,6 +86,17 @@
 				871DE9C42375AE8E00A00FC1 /* main.m */,
 			);
 			path = BT_TableView;
+			sourceTree = "<group>";
+		};
+		87F33CA52379A290005DCF9B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				871DE9B82375AE8D00A00FC1 /* ViewController.h */,
+				871DE9B92375AE8D00A00FC1 /* ViewController.m */,
+				87F33CA62379A2C3005DCF9B /* DummyTableViewController.h */,
+				87F33CA72379A2C3005DCF9B /* DummyTableViewController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,8 +171,11 @@
 			files = (
 				871DE9BA2375AE8D00A00FC1 /* ViewController.m in Sources */,
 				871DE9B42375AE8D00A00FC1 /* AppDelegate.m in Sources */,
+				87F33CA82379A2C3005DCF9B /* DummyTableViewController.m in Sources */,
 				871DE9C52375AE8E00A00FC1 /* main.m in Sources */,
+				8729350423796E370068E584 /* UserInfo.m in Sources */,
 				871DE9B72375AE8D00A00FC1 /* SceneDelegate.m in Sources */,
+				87293507237971F70068E584 /* InfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

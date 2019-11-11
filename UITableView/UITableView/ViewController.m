@@ -21,7 +21,7 @@
     
     self.myTableView.dataSource = self;
     self.myTableView.delegate = self;
-        
+    
     _myTableView.estimatedRowHeight = 80;
     _myTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -37,7 +37,6 @@
         NSLog(@"%i", i);
         [selectedCoins addObject:@"false"];
     }
-  
     
     [_myTableView allowsMultipleSelection];
 }
@@ -54,6 +53,7 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:myCoins.count - 1 inSection:0];
     [_myTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [selectedCoins addObject:@"false"];
     
     [_myTableView endUpdates];
     
@@ -92,6 +92,7 @@
 }
 
 //MARK - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -116,7 +117,7 @@
             if ([selectedCoins[indexPath.row] isEqualToString:@"true"]) {
                 [myCell setAccessoryType:UITableViewCellAccessoryCheckmark];
             } else {
-                 [myCell setAccessoryType:UITableViewCellAccessoryNone];
+                [myCell setAccessoryType:UITableViewCellAccessoryNone];
             }
             
         }
@@ -180,15 +181,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    [tableView deselectRowAtIndexPath:indexPath animated:true];
-    
     if ([selectedCoins[indexPath.row] isEqualToString:@"true"]) {
-         selectedCoins[indexPath.row] = @"false";
+        selectedCoins[indexPath.row] = @"false";
     } else {
-         selectedCoins[indexPath.row] = @"true";
+        selectedCoins[indexPath.row] = @"true";
     }
-   
+    
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [myCoins removeObjectAtIndex:indexPath.row];
+        [selectedCoins removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIContextualAction *delete = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        NSLog(@"Delete pressed");
+        [self->myCoins removeObjectAtIndex:indexPath.row];
+        [self->selectedCoins removeObjectAtIndex:indexPath.row];
+        [self->_myTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }];
+    
+    UISwipeActionsConfiguration *swipeActionConfig = [UISwipeActionsConfiguration configurationWithActions:[NSArray arrayWithObjects:delete, nil]];
+    [swipeActionConfig performsFirstActionWithFullSwipe];
+    
+    return swipeActionConfig;
 }
 
 
