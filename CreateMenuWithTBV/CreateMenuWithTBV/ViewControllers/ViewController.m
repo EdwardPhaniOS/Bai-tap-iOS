@@ -29,10 +29,18 @@
     
     numberOfRowDict = [[NSMutableDictionary alloc]initWithCapacity:arrayItems.count];
     
+    //Save number of rows to dictionary
+    int count = -1;
+    for (SectionModel *section in arrayItems) {
+        count += 1;
+        
+        [self saveNumberOfRowsToDict:section.numberOfRow atIndex:count];
+    }
+    
     self.menuTableView.dataSource = self;
     self.menuTableView.delegate = self;
     
-    //remove empty row at bottom
+    //Remove empty row at bottom
     self.menuTableView.tableFooterView = [[UIView alloc] init];
 }
 
@@ -44,18 +52,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    SectionModel *mySection = [arrayItems objectAtIndexedSubscript:section];
-    return mySection.numberOfRow;
-    
-
-//    if (selectedSection == -1) {
-//        return 0;
-//    } else if (section == selectedSection) {
-//        SectionModel *mySection = [arrayItems objectAtIndexedSubscript:selectedSection];
-//        return mySection.numberOfRow;
-//    } else {
-//        return 0;
-//    }
+    if (selectedSection == -1) {
+        return 0;
+    } else if (section == selectedSection) {
+        SectionModel *mySection = [arrayItems objectAtIndexedSubscript:selectedSection];
+        return mySection.numberOfRow;
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,8 +98,8 @@
     UIImage *arrowImage = [UIImage systemImageNamed:@"arrowtriangle.down.fill"];
     
     SectionModel *mySection = [arrayItems objectAtIndexedSubscript:section];
-
-    if (mySection.numberOfRow == 0) {
+    
+    if (selectedSection == -1 || mySection.numberOfRow == 0 || selectedSection != section) {
         arrowImage = [UIImage systemImageNamed:@"arrowtriangle.right.fill"];
     }
     
@@ -133,52 +137,33 @@
     
     int index = (int)sender.tag;
     selectedSection = index;
-    NSString *indexString = [NSString stringWithFormat:@"%i", index];
     
-    //if current arrow is right arrow
+    //If current arrow is right arrow
     if (sender.imageView.image == [UIImage systemImageNamed:@"arrowtriangle.right.fill"]) {
 
-        //change to down arrow
+        //Change to down arrow
         UIImage *downArrow = [UIImage systemImageNamed:@"arrowtriangle.down.fill"];
         [sender setImage:downArrow forState:UIControlStateNormal];
 
         SectionModel *mySection = [arrayItems objectAtIndexedSubscript:index];
 
-        //get number of rows from dictionary
-        int number = [[numberOfRowDict objectForKey:indexString] intValue];
+        //Get number of rows from dictionary then update rows on UI
+        int number = [self getNumberOfRowsFromDictWithKey:index];
         mySection.numberOfRow = number;
-
-        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:index];
-        [self.menuTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.menuTableView reloadData];
 
     } else {
-        //change to right arrow
+        //Change to right arrow
         UIImage *rightArrow = [UIImage systemImageNamed:@"arrowtriangle.right.fill"];
         [sender setImage:rightArrow forState:UIControlStateNormal];
 
         SectionModel *mySection = [arrayItems objectAtIndexedSubscript:index];
 
-        //save number of rows to dictionary
-        int numberOfRows = (int)mySection.numberOfRow;
-        NSNumber *number = [[NSNumber alloc] initWithInt:numberOfRows];
-        [numberOfRowDict setValue:number forKey:indexString];
-
+        //Save number of rows to dictionary then remove rows on UI
+        [self saveNumberOfRowsToDict:(int)mySection.numberOfRow atIndex:index];
         mySection.numberOfRow = 0;
-
-        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:index];
-        [self.menuTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.menuTableView reloadData];
     }
-    
-    //Muon 1 cai bat, cac cai con lai dong hoac muon loat lan luot tung cai thi:
-    
-    //Yourarray.append([labeltext])
-    //Then upate your table and insert new row
-//    tableView.beginUpdates()
-//    tableView.insertRows(at: [IndexPath(row: yourArray.count-1, section: 0)], with: .automatic)
-//    tableView.endUpdates()
-    
-    
-//    SectionModel *mySection = [arrayItems objectAtIndexedSubscript:index];
     
 }
 
@@ -187,10 +172,10 @@
     int index = (int)sender.tag;
     SectionModel *mySection = [arrayItems objectAtIndexedSubscript:index];
     mySection.numberOfRow += 1;
+    [self saveNumberOfRowsToDict:mySection.numberOfRow atIndex:index];
     
     NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:index];
     [self.menuTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-    
 }
 
 - (void) minusButtonPressed: (UIButton *)sender {
@@ -200,10 +185,23 @@
     
     if (mySection.numberOfRow > 0) {
         mySection.numberOfRow -= 1;
+        [self saveNumberOfRowsToDict:mySection.numberOfRow atIndex:index];
     }
     
     NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:index];
     [self.menuTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)saveNumberOfRowsToDict: (int)numbers atIndex: (int)index {
+    NSString *key = [NSString stringWithFormat:@"%i", index];
+    NSNumber *nsNumber = [[NSNumber alloc] initWithInt:numbers];
+    [numberOfRowDict setValue:nsNumber forKey:key];
+}
+
+- (int)getNumberOfRowsFromDictWithKey: (int)index {
+    NSString *key = [NSString stringWithFormat:@"%i", index];
+    int number = [[numberOfRowDict objectForKey:key] intValue];
+    return number;
 }
 
 @end
