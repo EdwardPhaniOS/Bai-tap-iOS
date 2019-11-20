@@ -188,6 +188,7 @@
         [self saveNumberOfRowsToDict:mySection.numberOfRow atIndex:index];
     }
     
+    
     NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:index];
     [self.menuTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }

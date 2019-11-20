@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DemoUICollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RHf-hu-RMZ">
+                                <rect key="frame" x="24" y="68" width="366" height="694"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="5" id="qyp-mx-yqf">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="RCA-Nu-QEB" customClass="CollectionViewCell" customModule="DemoUICollectionView" customModuleProvider="target">
+                                        <rect key="frame" x="76" y="0.0" width="214" height="219"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ted-Rk-xYc">
+                                            <rect key="frame" x="0.0" y="0.0" width="214" height="219"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UuD-Rp-AZX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="214" height="219"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfE-WE-CH0">
+                                                    <rect key="frame" x="163" y="8" width="43" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="43" id="RmY-dG-k8O"/>
+                                                        <constraint firstAttribute="height" constant="41" id="pBY-ZQ-hMl"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="minus.circle" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="minusButtonPressed:" destination="RCA-Nu-QEB" eventType="touchUpInside" id="GO8-DX-hq5"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="cfE-WE-CH0" secondAttribute="trailing" constant="8" id="5aI-IW-ckY"/>
+                                                <constraint firstItem="cfE-WE-CH0" firstAttribute="top" secondItem="Ted-Rk-xYc" secondAttribute="top" constant="8" id="NAl-Yb-9ks"/>
+                                                <constraint firstItem="UuD-Rp-AZX" firstAttribute="top" secondItem="Ted-Rk-xYc" secondAttribute="top" id="WBF-AK-JKh"/>
+                                                <constraint firstItem="UuD-Rp-AZX" firstAttribute="leading" secondItem="Ted-Rk-xYc" secondAttribute="leading" id="caG-hV-rmh"/>
+                                                <constraint firstAttribute="bottom" secondItem="UuD-Rp-AZX" secondAttribute="bottom" id="lC9-ii-iZp"/>
+                                                <constraint firstAttribute="trailing" secondItem="UuD-Rp-AZX" secondAttribute="trailing" id="tTJ-Jg-WdS"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="214" height="219"/>
+                                        <connections>
+                                            <outlet property="minusButton" destination="cfE-WE-CH0" id="v80-UU-HAo"/>
+                                            <outlet property="myImageView" destination="UuD-Rp-AZX" id="cfg-vf-7PJ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="GC8-6r-9Qm">
+                                <rect key="frame" x="127" y="808" width="160" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZJ-vM-Nh1">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6dc-Ji-HeI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VoR-PH-9lJ">
+                                        <rect key="frame" x="130" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1XL-36-hRP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GC8-6r-9Qm" secondAttribute="bottom" constant="24" id="JZV-Gn-ThC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RHf-hu-RMZ" secondAttribute="trailing" constant="24" id="K0a-At-kxH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RHf-hu-RMZ" secondAttribute="bottom" constant="100" id="Lst-ic-Fq2"/>
+                            <constraint firstItem="RHf-hu-RMZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="WTU-ha-OPK"/>
+                            <constraint firstItem="RHf-hu-RMZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="cHP-aw-b2C"/>
+                            <constraint firstItem="GC8-6r-9Qm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dgg-zE-8mX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="myCollectionView" destination="RHf-hu-RMZ" id="Xgg-Xe-6Lp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="minus.circle" catalog="system" width="64" height="60"/>
+    </resources>
+</document>
