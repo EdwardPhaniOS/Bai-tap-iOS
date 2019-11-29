@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.title = "First Screen"
     }
 
 
@@ -25,6 +26,20 @@ class ViewController: UIViewController {
     
     @IBAction func backToRootScreen(segue: UIStoryboardSegue) {
         //do something
+    }
+    
+    @IBAction func moveToScreen2UsingCode(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let secondVC = storyboard.instantiateViewController(identifier: "SecondViewController") as? SecondViewController {
+            //Presents a view controller modally.
+            self.present(secondVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    @IBAction func pushToFirstScreen(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "pushToFirstScreen", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
