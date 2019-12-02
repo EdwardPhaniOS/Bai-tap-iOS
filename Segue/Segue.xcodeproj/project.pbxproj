@@ -20,6 +20,8 @@
 		87BFC74323914E7A00C17354 /* PushFourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BFC74223914E7A00C17354 /* PushFourthViewController.swift */; };
 		87BFC745239158E900C17354 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BFC744239158E900C17354 /* AViewController.swift */; };
 		87BFC74723915A5300C17354 /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BFC74623915A5300C17354 /* BViewController.swift */; };
+		87E2727C23952E5C009EC6D1 /* XibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E2727A23952E5C009EC6D1 /* XibViewController.swift */; };
+		87E2727D23952E5C009EC6D1 /* XibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E2727B23952E5C009EC6D1 /* XibViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		87BFC74223914E7A00C17354 /* PushFourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushFourthViewController.swift; sourceTree = "<group>"; };
 		87BFC744239158E900C17354 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
 		87BFC74623915A5300C17354 /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
+		87E2727A23952E5C009EC6D1 /* XibViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibViewController.swift; sourceTree = "<group>"; };
+		87E2727B23952E5C009EC6D1 /* XibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 				87355E67238EBE2700427729 /* SecondViewController.swift */,
 				87BFC74823915AD400C17354 /* Push VC */,
 				87BFC74923915ADE00C17354 /* Code VC */,
+				87E2727E23952E61009EC6D1 /* Xib VC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -118,6 +123,15 @@
 				87355E59238EBA8100427729 /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		87E2727E23952E61009EC6D1 /* Xib VC */ = {
+			isa = PBXGroup;
+			children = (
+				87E2727A23952E5C009EC6D1 /* XibViewController.swift */,
+				87E2727B23952E5C009EC6D1 /* XibViewController.xib */,
+			);
+			path = "Xib VC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87E2727D23952E5C009EC6D1 /* XibViewController.xib in Resources */,
 				87355E60238EBA8300427729 /* LaunchScreen.storyboard in Resources */,
 				87355E5D238EBA8300427729 /* Assets.xcassets in Resources */,
 				87355E5B238EBA8100427729 /* Main.storyboard in Resources */,
@@ -195,6 +210,7 @@
 				87BFC745239158E900C17354 /* AViewController.swift in Sources */,
 				87BFC7412391429700C17354 /* PushThirdViewController.swift in Sources */,
 				87BFC74723915A5300C17354 /* BViewController.swift in Sources */,
+				87E2727C23952E5C009EC6D1 /* XibViewController.swift in Sources */,
 				87355E68238EBE2700427729 /* SecondViewController.swift in Sources */,
 				87355E58238EBA8100427729 /* FirstViewController.swift in Sources */,
 				87BFC73F239141A900C17354 /* PushSecondViewController.swift in Sources */,

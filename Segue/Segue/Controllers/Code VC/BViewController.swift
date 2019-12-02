@@ -15,7 +15,7 @@ class BViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.green
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = .green
         createButton()
     }
     

@@ -366,7 +366,7 @@
         <!--Navigation Controller-->
         <scene sceneID="SnG-nN-EWR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mIp-hR-63v" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mIp-hR-63v" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="fZq-5D-qqK">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -379,7 +379,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRW-az-B3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-194" y="138"/>
+            <point key="canvasLocation" x="41" y="138"/>
         </scene>
     </scenes>
 </document>
