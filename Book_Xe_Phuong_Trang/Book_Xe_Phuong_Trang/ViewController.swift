@@ -61,7 +61,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let numberOfColumn: CGFloat = 5
+        let numberOfColumn: CGFloat = CGFloat(dataArray[0].count)
         let minSpace: CGFloat = 8
         let leftAndRightPadding: CGFloat = 32
         

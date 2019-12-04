@@ -12,6 +12,8 @@ class MyCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    //After iOS 13, we need to call 2 functions below so image/ content in cell fit in cell
+    
     func getCellSize(_ targetSize: CGSize) -> CGSize {
         return CGSize(width: targetSize.width, height: targetSize.height)
     }
@@ -19,6 +21,4 @@ class MyCell: UICollectionViewCell {
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return self.getCellSize(targetSize)
     }
-    
-    
 }
