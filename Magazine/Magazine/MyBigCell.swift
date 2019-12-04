@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class MyBigCell: UICollectionViewCell {
     
-    @IBOutlet weak var image: UIImageView!
-    
+    @IBOutlet weak var imageView: UIImageView!
     
 }

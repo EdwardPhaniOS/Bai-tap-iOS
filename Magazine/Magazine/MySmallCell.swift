@@ -12,10 +12,4 @@ class MySmallCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-//    func setupView(imageName: String = "flocks_of_bird") {
-//        
-//        let image = UIImage(named: imageName)
-//        imageView.image = image
-//        imageView.contentMode = .scaleAspectFill
-//    }
 }
