@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     var dataArray = [
                  [1, 0, 1, 0, 1],
                  [1, 0, 1, 0, 1],
@@ -42,14 +41,16 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! MyCell
         
         let seatData = dataArray[indexPath.section][indexPath.item]
         
         if seatData == 0 {
              cell.backgroundColor = UIColor.white
+            
         } else {
-            cell.backgroundColor = UIColor.green
+            let image = UIImage(named: "ic_chair_none")
+            cell.imageView.image = image
         }
         
         return cell
@@ -62,11 +63,12 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         
         let numberOfColumn: CGFloat = 5
         let minSpace: CGFloat = 8
+        let leftAndRightPadding: CGFloat = 32
         
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
         
-        let collectionViewWidth = self.collectionView.bounds.width
-        
-        let itemWidth = (collectionViewWidth - ((numberOfColumn - 1) * minSpace)) / numberOfColumn
+        let itemWidth = (screenWidth - leftAndRightPadding - ((numberOfColumn - 1) * minSpace)) / numberOfColumn
         
         return CGSize(width: itemWidth, height: itemWidth)
     }

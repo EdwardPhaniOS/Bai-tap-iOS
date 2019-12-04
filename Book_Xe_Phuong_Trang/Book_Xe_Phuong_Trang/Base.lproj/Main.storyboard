@@ -16,25 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="56o-tK-itB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="32"/>
+                                <segments>
+                                    <segment title="Tầng dưới"/>
+                                    <segment title="Tầng trên"/>
+                                </segments>
+                            </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SEr-hd-jfr">
                                 <rect key="frame" x="16" y="115" width="382" height="747"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="8" minimumInteritemSpacing="8" id="IVs-Mr-8A5">
-                                    <size key="itemSize" width="209" height="208"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="IVs-Mr-8A5">
+                                    <size key="itemSize" width="63" height="71"/>
+                                    <size key="estimatedItemSize" width="63" height="71"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="24" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCell" id="5Ty-Jl-xIb">
-                                        <rect key="frame" x="86.5" y="24" width="209" height="208"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" reuseIdentifier="myCell" id="5Ty-Jl-xIb" customClass="MyCell" customModule="Book_Xe_Phuong_Trang" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24" width="63" height="71"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WZ0-m3-9Ty">
-                                            <rect key="frame" x="0.0" y="0.0" width="209" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="63" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wQg-nB-ETa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="209" height="208"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wQg-nB-ETa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="63" height="71"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -44,17 +52,12 @@
                                                 <constraint firstAttribute="bottom" secondItem="wQg-nB-ETa" secondAttribute="bottom" id="tHM-zU-vHz"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="209" height="208"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="wQg-nB-ETa" id="gct-T2-riW"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="56o-tK-itB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="32"/>
-                                <segments>
-                                    <segment title="Tầng dưới"/>
-                                    <segment title="Tầng trên"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -74,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
+            <point key="canvasLocation" x="-162.31884057971016" y="107.8125"/>
         </scene>
     </scenes>
 </document>

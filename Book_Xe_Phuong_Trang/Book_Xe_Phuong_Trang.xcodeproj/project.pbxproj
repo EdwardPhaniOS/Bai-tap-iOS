@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87567F922397C23E008C2013 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87567F912397C23E008C2013 /* MyCell.swift */; };
 		BDBB139E2397949A002DCEF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB139D2397949A002DCEF8 /* AppDelegate.swift */; };
 		BDBB13A02397949A002DCEF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB139F2397949A002DCEF8 /* SceneDelegate.swift */; };
 		BDBB13A22397949A002DCEF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB13A12397949A002DCEF8 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87567F912397C23E008C2013 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		BDBB139A2397949A002DCEF8 /* Book_Xe_Phuong_Trang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Book_Xe_Phuong_Trang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBB139D2397949A002DCEF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDBB139F2397949A002DCEF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				BDBB139D2397949A002DCEF8 /* AppDelegate.swift */,
 				BDBB139F2397949A002DCEF8 /* SceneDelegate.swift */,
 				BDBB13A12397949A002DCEF8 /* ViewController.swift */,
+				87567F912397C23E008C2013 /* MyCell.swift */,
 				BDBB13A32397949A002DCEF8 /* Main.storyboard */,
 				BDBB13A62397949C002DCEF8 /* Assets.xcassets */,
 				BDBB13A82397949C002DCEF8 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDBB13A22397949A002DCEF8 /* ViewController.swift in Sources */,
+				87567F922397C23E008C2013 /* MyCell.swift in Sources */,
 				BDBB139E2397949A002DCEF8 /* AppDelegate.swift in Sources */,
 				BDBB13A02397949A002DCEF8 /* SceneDelegate.swift in Sources */,
 			);
