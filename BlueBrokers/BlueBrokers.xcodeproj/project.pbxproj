@@ -14,6 +14,7 @@
 		878BD8D3239539D2003D45A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 878BD8D2239539D2003D45A4 /* Assets.xcassets */; };
 		878BD8D6239539D2003D45A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 878BD8D4239539D2003D45A4 /* LaunchScreen.storyboard */; };
 		878BD8DE23954DF1003D45A4 /* PickDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BD8DD23954DF0003D45A4 /* PickDateViewController.swift */; };
+		BDA4EFFD23978C6900433889 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA4EFFC23978C6900433889 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		878BD8D5239539D2003D45A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		878BD8D7239539D2003D45A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		878BD8DD23954DF0003D45A4 /* PickDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDateViewController.swift; sourceTree = "<group>"; };
+		BDA4EFFC23978C6900433889 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				878BD8C9239539D1003D45A4 /* AppDelegate.swift */,
 				878BD8CB239539D1003D45A4 /* SceneDelegate.swift */,
 				878BD8CD239539D1003D45A4 /* SignInViewController.swift */,
+				BDA4EFFC23978C6900433889 /* RegisterViewController.swift */,
 				878BD8DD23954DF0003D45A4 /* PickDateViewController.swift */,
 				878BD8CF239539D1003D45A4 /* Main.storyboard */,
 				878BD8D2239539D2003D45A4 /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				878BD8CE239539D1003D45A4 /* SignInViewController.swift in Sources */,
+				BDA4EFFD23978C6900433889 /* RegisterViewController.swift in Sources */,
 				878BD8CA239539D1003D45A4 /* AppDelegate.swift in Sources */,
 				878BD8CC239539D1003D45A4 /* SceneDelegate.swift in Sources */,
 				878BD8DE23954DF1003D45A4 /* PickDateViewController.swift in Sources */,
