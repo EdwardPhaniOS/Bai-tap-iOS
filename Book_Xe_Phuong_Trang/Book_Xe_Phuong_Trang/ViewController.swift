@@ -10,8 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    var dataArray = [
+                 [1, 0, 1, 0, 1],
+                 [1, 0, 1, 0, 1],
+                 [1, 0, 1, 0, 1],
+                 [1, 0, 1, 0, 1],
+                 [1, 1, 1, 1, 1]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,19 +28,29 @@ class ViewController: UIViewController {
         self.collectionView.delegate = self
     }
 
-
 }
 
 //MARK: - UICollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return dataArray.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return dataArray[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath)
-        cell.backgroundColor = UIColor.green
+        
+        let seatData = dataArray[indexPath.section][indexPath.item]
+        
+        if seatData == 0 {
+             cell.backgroundColor = UIColor.white
+        } else {
+            cell.backgroundColor = UIColor.green
+        }
         
         return cell
      }
