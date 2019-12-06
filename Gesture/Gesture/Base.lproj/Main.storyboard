@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--First View Controller-->
+        <scene sceneID="6co-uH-3gt">
+            <objects>
+                <viewController id="zzk-3o-ev1" customClass="FirstViewController" customModule="Gesture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="afD-pU-P33">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zOl-xt-Bx4">
+                                <rect key="frame" x="24" y="84" width="366" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="YtE-T9-Ze3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VBZ-Ee-nOn">
+                                <rect key="frame" x="0.0" y="148" width="414" height="690"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" id="cN7-AY-QHW">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cN7-AY-QHW" id="1wh-VT-6Fk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VBZ-Ee-nOn" firstAttribute="top" secondItem="zOl-xt-Bx4" secondAttribute="bottom" constant="24" id="cW8-EC-NlH"/>
+                            <constraint firstItem="G9S-VX-BLf" firstAttribute="trailing" secondItem="VBZ-Ee-nOn" secondAttribute="trailing" id="dmC-C2-rlE"/>
+                            <constraint firstItem="VBZ-Ee-nOn" firstAttribute="leading" secondItem="G9S-VX-BLf" secondAttribute="leading" id="gwT-nz-zAG"/>
+                            <constraint firstItem="G9S-VX-BLf" firstAttribute="bottom" secondItem="VBZ-Ee-nOn" secondAttribute="bottom" constant="24" id="ixm-zi-0qw"/>
+                            <constraint firstItem="zOl-xt-Bx4" firstAttribute="leading" secondItem="G9S-VX-BLf" secondAttribute="leading" constant="24" id="j04-fb-482"/>
+                            <constraint firstItem="G9S-VX-BLf" firstAttribute="trailing" secondItem="zOl-xt-Bx4" secondAttribute="trailing" constant="24" id="sNd-dX-rz6"/>
+                            <constraint firstItem="zOl-xt-Bx4" firstAttribute="top" secondItem="G9S-VX-BLf" secondAttribute="top" constant="40" id="v5C-8o-58e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G9S-VX-BLf"/>
+                    </view>
+                    <connections>
+                        <outlet property="myTableView" destination="VBZ-Ee-nOn" id="RYn-xj-6Yd"/>
+                        <outlet property="myTextField" destination="zOl-xt-Bx4" id="3Dh-vr-ERq"/>
+                        <segue destination="QfM-0n-B7m" kind="show" identifier="toSecondView" id="LhU-KK-wOK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ti-8s-4Fk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1126" y="145"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="OdY-1W-ckH">
+            <objects>
+                <viewController id="QfM-0n-B7m" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vu3-sf-YsO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Second View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz1-zS-cqA">
+                                <rect key="frame" x="92" y="93" width="230" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="q2g-go-iVy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DYS-7X-2hY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Si3-V6-MAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-204" y="137"/>
+        </scene>
+        <!--Demo View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DemoViewController" customModule="Gesture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rbf-aR-1O1">
+                                <rect key="frame" x="94" y="431" width="226" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chair" translatesAutoresizingMaskIntoConstraints="NO" id="azo-Qi-fwe">
+                                <rect key="frame" x="87" y="247" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="jgk-Se-mLV" appends="YES" id="Amg-se-8bU"/>
+                                    <outletCollection property="gestureRecognizers" destination="aID-x6-3Tb" appends="YES" id="9WM-3u-6YR"/>
+                                    <outletCollection property="gestureRecognizers" destination="G0c-XI-cqf" appends="YES" id="j5v-dz-nsA"/>
+                                    <outletCollection property="gestureRecognizers" destination="6hZ-Kd-79z" appends="YES" id="bJk-0a-DRg"/>
+                                </connections>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QP4-Bc-5kN">
+                                <rect key="frame" x="87" y="662" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4FS-6l-A1b" appends="YES" id="zkz-y1-YwH"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aEd-6E-yPz" appends="YES" id="HwU-ux-MI2"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="azo-Qi-fwe" id="pRg-17-HbD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aEd-6E-yPz">
+                    <connections>
+                        <action selector="tapOnScreen:" destination="BYZ-38-t0r" id="CeY-N2-BvL"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" numberOfTapsRequired="1" id="jgk-Se-mLV">
+                    <connections>
+                        <action selector="logTapOnImage:" destination="BYZ-38-t0r" id="5DE-96-HhC"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <rotationGestureRecognizer id="aID-x6-3Tb">
+                    <connections>
+                        <action selector="handleRotation:" destination="BYZ-38-t0r" id="CLR-cY-cPx"/>
+                    </connections>
+                </rotationGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="G0c-XI-cqf">
+                    <connections>
+                        <action selector="handlePanGesture:" destination="BYZ-38-t0r" id="ccM-iX-AfE"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="6hZ-Kd-79z">
+                    <connections>
+                        <action selector="handlePinchGesture:" destination="BYZ-38-t0r" id="zwa-Bg-T4w"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="4FS-6l-A1b">
+                    <connections>
+                        <action selector="handleSwipeGesture:" destination="BYZ-38-t0r" id="3zH-DO-XKa"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="840.57971014492762" y="134.59821428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chair" width="256" height="256"/>
+    </resources>
+</document>
