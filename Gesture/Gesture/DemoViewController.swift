@@ -11,11 +11,28 @@ import UIKit
 class DemoViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var swipeArea: UIView!
     
+    let images = [
+        UIImage(named: "pic1"),
+        UIImage(named: "pic2"),
+        UIImage(named: "pic3"),
+        UIImage(named: "pic4"),
+    ]
+    
+    var currentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        rightSwipeGesture.direction = .right
+        
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        leftSwipeGesture.direction = .left
+        
+        swipeArea.addGestureRecognizer(leftSwipeGesture)
+        swipeArea.addGestureRecognizer(rightSwipeGesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -25,23 +42,35 @@ class DemoViewController: UIViewController {
     
     @IBAction func tapOnScreen(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
-        changeImage()
+        changeToNextImage()
     }
     
     
     @IBAction func logTapOnImage(_ sender: UILongPressGestureRecognizer) {
-        changeImage()
+        changeToNextImage()
     }
     
-    @objc func changeImage() {
-        let image1 = UIImage(named: "pig")
-        let image2 = UIImage(named: "bird")
+    @objc func changeToNextImage() {
         
-        if self.imageView.image == image1 {
-            self.imageView.image = image2
+        if currentIndex < images.count - 1 {
+            currentIndex += 1
         } else {
-            self.imageView.image = image1
+            currentIndex = 0
         }
+        
+        self.imageView.image = images[currentIndex]
+        
+    }
+    
+    func changeToPreviousImage() {
+        
+        if currentIndex > 0 {
+            currentIndex -= 1
+        } else {
+            currentIndex = images.count - 1
+        }
+        
+        self.imageView.image = images[currentIndex]
     }
     
     var lastRotation: CGFloat = 0
@@ -102,15 +131,12 @@ class DemoViewController: UIViewController {
     }
     
     
-    @IBAction func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
-        
-        let image1 = UIImage(named: "pig")
-        let image2 = UIImage(named: "bird")
+    @objc func handleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
         
         if sender.direction == .right {
-            self.imageView.image = image1
+            changeToNextImage()
         } else if sender.direction == .left {
-             self.imageView.image = image2
+            changeToPreviousImage()
         }
     }
     

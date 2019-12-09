@@ -112,13 +112,19 @@
                                 </connections>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QP4-Bc-5kN">
-                                <rect key="frame" x="87" y="662" width="240" height="128"/>
+                                <rect key="frame" x="-6" y="662" width="420" height="226"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe Left or Right" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGk-P0-zYx">
+                                        <rect key="frame" x="138" y="103" width="145" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="4FS-6l-A1b" appends="YES" id="zkz-y1-YwH"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -130,6 +136,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="azo-Qi-fwe" id="pRg-17-HbD"/>
+                        <outlet property="swipeArea" destination="QP4-Bc-5kN" id="J90-sI-P35"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -158,11 +165,6 @@
                         <action selector="handlePinchGesture:" destination="BYZ-38-t0r" id="zwa-Bg-T4w"/>
                     </connections>
                 </pinchGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="4FS-6l-A1b">
-                    <connections>
-                        <action selector="handleSwipeGesture:" destination="BYZ-38-t0r" id="3zH-DO-XKa"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="840.57971014492762" y="134.59821428571428"/>
         </scene>
