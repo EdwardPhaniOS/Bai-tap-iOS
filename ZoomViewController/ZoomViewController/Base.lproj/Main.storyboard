@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XeK-Ih-L0q">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ZoomViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-307" y="139"/>
+        </scene>
+        <!--Zoom View Controller-->
+        <scene sceneID="Yur-Kp-O5U">
+            <objects>
+                <viewController id="XeK-Ih-L0q" customClass="ZoomViewController" customModule="ZoomViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zU1-D1-pdY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AH3-wl-wOU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Icc-27-ZFD">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Icc-27-ZFD" firstAttribute="leading" secondItem="AH3-wl-wOU" secondAttribute="leading" id="3I0-1b-deG"/>
+                                    <constraint firstItem="Icc-27-ZFD" firstAttribute="centerX" secondItem="AH3-wl-wOU" secondAttribute="centerX" id="71A-qH-Mms"/>
+                                    <constraint firstItem="Icc-27-ZFD" firstAttribute="top" secondItem="AH3-wl-wOU" secondAttribute="top" id="9OT-4Q-m1p"/>
+                                    <constraint firstItem="Icc-27-ZFD" firstAttribute="centerY" secondItem="AH3-wl-wOU" secondAttribute="centerY" id="9uo-Mu-Rh2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Icc-27-ZFD" secondAttribute="trailing" constant="-40" id="DS0-M8-CQl"/>
+                                    <constraint firstAttribute="bottom" secondItem="Icc-27-ZFD" secondAttribute="bottom" constant="12" id="ul1-fT-rld"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Bhv-ah-5Y7"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9ks-wT-3BQ"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="AH3-wl-wOU" firstAttribute="leading" secondItem="3lz-n0-KBU" secondAttribute="leading" id="GjG-Ki-3y4"/>
+                            <constraint firstItem="AH3-wl-wOU" firstAttribute="top" secondItem="3lz-n0-KBU" secondAttribute="top" id="Tgy-X9-3rw"/>
+                            <constraint firstItem="3lz-n0-KBU" firstAttribute="trailing" secondItem="AH3-wl-wOU" secondAttribute="trailing" id="q2O-3o-Reh"/>
+                            <constraint firstItem="3lz-n0-KBU" firstAttribute="bottom" secondItem="AH3-wl-wOU" secondAttribute="bottom" id="zI0-ab-wlm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3lz-n0-KBU"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Icc-27-ZFD" id="Alx-2y-POH"/>
+                        <outlet property="scrollView" destination="AH3-wl-wOU" id="DNp-Pm-F0H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrO-Ue-0ps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573.91304347826087" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg.jpg" width="1600" height="2068"/>
+    </resources>
+</document>
