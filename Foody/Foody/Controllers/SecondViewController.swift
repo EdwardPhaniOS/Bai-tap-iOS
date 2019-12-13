@@ -14,6 +14,7 @@ class SecondViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = 120
+        tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source methods

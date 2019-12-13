@@ -12,6 +12,7 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var featureCollectionView: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,16 @@ class FirstViewController: UIViewController {
         
         featureCollectionView.dataSource = self
         featureCollectionView.delegate = self
+//        featureCollectionView.scroll
+    }
+}
+
+extension FirstViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if scrollView == featureCollectionView {
+            print("ABC")
+        }
     }
 }
 
@@ -38,12 +49,6 @@ extension FirstViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TBVCellOfFirstVC", for: indexPath)
-        
-//        if indexPath.section % 2 == 0 {
-//            cell.backgroundColor = .green
-//        } else {
-//            cell.backgroundColor = .blue
-//        }
         
         return cell
     }
