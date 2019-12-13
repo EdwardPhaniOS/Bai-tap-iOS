@@ -13,12 +13,14 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var featureCollectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
-        tableView.rowHeight = 300
+        tableView.rowHeight = 280
+        
+        featureCollectionView.dataSource = self
+        featureCollectionView.delegate = self
     }
 }
 
@@ -37,14 +39,50 @@ extension FirstViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TBVCellOfFirstVC", for: indexPath)
         
-        if indexPath.section % 2 == 0 {
-            cell.backgroundColor = .green
-        } else {
-            cell.backgroundColor = .blue
-        }
+//        if indexPath.section % 2 == 0 {
+//            cell.backgroundColor = .green
+//        } else {
+//            cell.backgroundColor = .blue
+//        }
         
         return cell
     }
 }
 
+//MARK: - UICollectionViewDataSource
 
+extension FirstViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeatureCell", for: indexPath)
+        
+        cell.layer.cornerRadius = 16
+        
+        return cell
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+
+extension FirstViewController: UICollectionViewDelegate {
+    
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension FirstViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let collectionViewWidth = collectionView.frame.width
+        let collectionViewHeight = collectionView.frame.height
+        let minSpace: CGFloat = 10
+        
+        return CGSize(width: collectionViewWidth - minSpace, height: collectionViewHeight)
+    }
+    
+}

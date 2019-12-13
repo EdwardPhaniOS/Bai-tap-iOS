@@ -13,14 +13,6 @@ class TableViewCellOfFirstVC: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sectionLabel: UILabel!
     
-//    func getCellSize(_ targetSize: CGSize) -> CGSize {
-//        return CGSize(width: targetSize.width, height: targetSize.height)
-//    }
-//    
-//    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-//        return self.getCellSize(targetSize)
-//    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -45,6 +37,10 @@ extension TableViewCellOfFirstVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCellOfFirstVC", for: indexPath)
         
+        cell.layer.cornerRadius = 16
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        
         return cell
     }
 }
@@ -55,10 +51,10 @@ extension TableViewCellOfFirstVC: UICollectionViewDelegateFlowLayout {
         
         let visiableCell: CGFloat = 2
         let collectionViewWidth = collectionView.frame.width
-        let minSpace: CGFloat = 16
+        let minSpace: CGFloat = 10
         
         let itemWidth = (collectionViewWidth - minSpace) / visiableCell
         
-        return CGSize(width: itemWidth , height: itemWidth * 1.4)
+        return CGSize(width: itemWidth , height: itemWidth * 1.2)
     }
 }
