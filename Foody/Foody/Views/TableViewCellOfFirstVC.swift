@@ -37,8 +37,8 @@ extension TableViewCellOfFirstVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCellOfFirstVC", for: indexPath)
         
-        cell.layer.cornerRadius = 16
-        cell.layer.borderWidth = 1.0
+        cell.layer.cornerRadius = 8
+        cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.lightGray.cgColor
         
         return cell
@@ -49,12 +49,13 @@ extension TableViewCellOfFirstVC: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let visiableCell: CGFloat = 2
+        let visiableCell: CGFloat = 2.1
         let collectionViewWidth = collectionView.frame.width
         let minSpace: CGFloat = 10
+        let leftPadding: CGFloat = 5
         
-        let itemWidth = (collectionViewWidth - minSpace) / visiableCell
+        let itemWidth = (collectionViewWidth - minSpace - leftPadding) / visiableCell
         
-        return CGSize(width: itemWidth , height: itemWidth * 1.2)
+        return CGSize(width: itemWidth , height: itemWidth * 1.4)
     }
 }

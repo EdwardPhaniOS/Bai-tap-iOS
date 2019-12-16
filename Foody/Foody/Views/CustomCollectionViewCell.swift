@@ -21,4 +21,22 @@ class CustomCollectionViewCell: UICollectionViewCell {
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return self.getCellSize(targetSize)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        super.layoutSubviews()
+        roundCorners(corners: [.bottomLeft, .bottomRight], radius: 8.0)
+    }
 }
+
+//MARK: extention of UIView
+
+extension UIView {
+   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
+

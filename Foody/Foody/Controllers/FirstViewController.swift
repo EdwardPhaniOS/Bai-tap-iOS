@@ -32,8 +32,7 @@ extension FirstViewController: UIScrollViewDelegate {
         if scrollView == featureCollectionView {
             
             let x = targetContentOffset.pointee.x
-        
-            self.pageControl.currentPage = Int((x + 10) / view.frame.width)
+            self.pageControl.currentPage = Int(x / view.frame.width)
         }
     }
 }
@@ -68,8 +67,6 @@ extension FirstViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeatureCell", for: indexPath)
         
-        cell.layer.cornerRadius = 16
-        
         return cell
     }
 }
@@ -88,9 +85,11 @@ extension FirstViewController: UICollectionViewDelegateFlowLayout {
         
         let collectionViewWidth = collectionView.frame.width
         let collectionViewHeight = collectionView.frame.height
-        let minSpace: CGFloat = 10
+        let minSpace: CGFloat = 0
         
         return CGSize(width: collectionViewWidth - minSpace, height: collectionViewHeight)
     }
     
 }
+
+

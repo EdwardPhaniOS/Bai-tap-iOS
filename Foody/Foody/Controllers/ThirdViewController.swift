@@ -32,8 +32,6 @@ extension ThirdViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellOfThirdView", for: indexPath)
         
-        cell.layer.cornerRadius = 16
-        
         return cell
     }
     

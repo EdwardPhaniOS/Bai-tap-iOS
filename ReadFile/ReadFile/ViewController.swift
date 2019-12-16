@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         }
         
         do {
-            //            let fileList = try fileManager.contentsOfDirectory(atPath: "/Users/imac_vtca/Desktop/MD11/Bai-tap-iOS")
+            //let fileList = try fileManager.contentsOfDirectory(atPath: "/Users/imac_vtca/Desktop/MD11/Bai-tap-iOS")
             let fileList = try fileManager.contentsOfDirectory(atPath: "/")
             
             for fileName in fileList {
@@ -128,10 +128,10 @@ class ViewController: UIViewController {
             print("filePath1 is readable")
         }
         if fileManager.isWritableFile(atPath: filePath1) {
-             print("filePath1 is writable")
+            print("filePath1 is writable")
         }
         if fileManager.isDeletableFile(atPath: filePath1) {
-             print("filePath1 is Deletable")
+            print("filePath1 is Deletable")
         }
         if fileManager.isExecutableFile(atPath: filePath1) {
             print("filePath1 is ExecutableFile")
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         //Move Items:
         
         let dirPaths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-            
+        
         //Create docs directory
         guard let docsDir = dirPaths.first?.path else { return }
         
@@ -153,17 +153,94 @@ class ViewController: UIViewController {
         
         do {
             
-//            try fileManager.moveItem(atPath: filePath2, toPath: "\(destinationPath)/test2.txt")
+            //            try fileManager.moveItem(atPath: filePath2, toPath: "\(destinationPath)/test2.txt")
             
             try fileManager.copyItem(atPath: filePath2, toPath: "\(destinationPath)/test2.txt")
             
-//            try fileManager.removeItem(atPath: "\(destinationPath)/test2.txt")
+            //            try fileManager.removeItem(atPath: "\(destinationPath)/test2.txt")
             
         } catch let err {
             print(err.localizedDescription)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        //Create file:
         
+        let fileManager = FileManager.default
+//        let strDataToWrite = "Hello world".data(using: .utf8)
+//
+//        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+//
+//        if let safePath = path {
+//            if let documentPath = NSURL(fileURLWithPath: safePath).appendingPathComponent("text.txt")?.path {
+//                let isCreateSuccess = fileManager.createFile(atPath: documentPath, contents: strDataToWrite, attributes: nil)
+//                if isCreateSuccess {
+//                    print("Create file success!!")
+//                }
+//            }
+//        }
+        
+        //Read file:
+        
+        let fileURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        let filePath = fileURL?.appendingPathComponent("text.txt").path
+        
+        guard let safeFilePath = filePath else { return }
+        
+        do {
+            let data = try String(contentsOfFile: safeFilePath, encoding: .utf8)
+            //            let data = try String(contentsOfFile: safeFilePath)
+            
+            print("data: \(data)")
+        } catch  {
+            print("Error: \(error)")
+        }
+        
+        //Read file 2:
+        
+        //Create a file handle (open file handle then close file handle)
+        let fileHandle: FileHandle? = FileHandle(forReadingAtPath: safeFilePath)
+        
+        guard let safeFileHandle = fileHandle else { print("Open file failed"); return }
+        
+        safeFileHandle.seek(toFileOffset: 5)
+        if let dataBuffer = fileHandle?.readData(ofLength: 100) {
+            print("==========================")
+            print("dataBuffer: \(dataBuffer)")
+            
+            if let str = String(data: dataBuffer, encoding: .utf8) {
+                print("str: \(str)")
+            }
+            
+            fileHandle?.closeFile()
+        }
+        
+//        if let dataBuffer = file?.readDataToEndOfFile() {
+//            print("==========================")
+//            print("dataBuffer: \(dataBuffer)")
+//
+//            if let str = String(data: dataBuffer, encoding: .utf8) {
+//                print("str: \(str)")
+//            }
+//
+//            file?.closeFile()
+//        }
+        
+        //Write file:
+        
+        let fileHandleForUpdating: FileHandle? = FileHandle(forUpdatingAtPath: safeFilePath)
+        
+        if fileHandleForUpdating != nil {
+            if let data = (" I'm Vinh").data(using: .utf8) {
+//                fileHandleForUpdating!.seek(toFileOffset: 10)
+                fileHandleForUpdating?.seekToEndOfFile()
+                fileHandleForUpdating!.write(data)
+                fileHandleForUpdating!.closeFile()
+            }
+        }
     }
 }
 
