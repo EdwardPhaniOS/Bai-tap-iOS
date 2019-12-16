@@ -22,15 +22,18 @@ class FirstViewController: UIViewController {
         
         featureCollectionView.dataSource = self
         featureCollectionView.delegate = self
-//        featureCollectionView.scroll
     }
 }
 
 extension FirstViewController: UIScrollViewDelegate {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
         if scrollView == featureCollectionView {
-            print("ABC")
+            
+            let x = targetContentOffset.pointee.x
+        
+            self.pageControl.currentPage = Int((x + 10) / view.frame.width)
         }
     }
 }
@@ -59,7 +62,7 @@ extension FirstViewController: UITableViewDataSource {
 extension FirstViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
