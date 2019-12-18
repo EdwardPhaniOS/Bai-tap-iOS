@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="foa-JD-9LE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="foa-JD-9LE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,7 @@
                                             <constraint firstAttribute="height" constant="220" id="dqv-a3-moN"/>
                                         </constraints>
                                     </imageView>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-jT-CDh">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-jT-CDh">
                                         <rect key="frame" x="-2" y="301" width="304" height="31"/>
                                         <color key="tintColor" red="0.4823529411764706" green="0.92941176470588238" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -33,9 +33,6 @@
                                         </constraints>
                                         <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="thumbTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="z6h-Gh-2d0"/>
-                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ydv-Zq-P12">
                                         <rect key="frame" x="27" y="412" width="246" height="22"/>
