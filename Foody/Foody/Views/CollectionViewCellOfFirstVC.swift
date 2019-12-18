@@ -17,4 +17,19 @@ class CollectionViewCellOfFirstVC: UICollectionViewCell {
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return self.getCellSize(targetSize)
     }
+    
+    func setupAnimation() {
+        
+        // add shadow on cell
+        backgroundColor = .clear // very important
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.23
+        layer.shadowRadius = 2
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowColor = UIColor.black.cgColor
+        
+        // add corner radius on `contentView`
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 8
+    }
 }

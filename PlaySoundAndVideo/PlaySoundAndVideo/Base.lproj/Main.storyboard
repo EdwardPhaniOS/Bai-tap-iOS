@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="foa-JD-9LE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="foa-JD-9LE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PlaySoundAndVideo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="5eS-KD-7Gg">
-                                <rect key="frame" x="57" y="231" width="300" height="434"/>
+                                <rect key="frame" x="57" y="204" width="300" height="434"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CdPlayer" translatesAutoresizingMaskIntoConstraints="NO" id="f9G-Hp-b2g">
                                         <rect key="frame" x="40" y="0.0" width="220" height="220"/>
@@ -25,7 +25,7 @@
                                             <constraint firstAttribute="height" constant="220" id="dqv-a3-moN"/>
                                         </constraints>
                                     </imageView>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-jT-CDh">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNQ-jT-CDh">
                                         <rect key="frame" x="-2" y="301" width="304" height="31"/>
                                         <color key="tintColor" red="0.4823529411764706" green="0.92941176470588238" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -33,6 +33,9 @@
                                         </constraints>
                                         <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="thumbTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="z6h-Gh-2d0"/>
+                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ydv-Zq-P12">
                                         <rect key="frame" x="27" y="412" width="246" height="22"/>
@@ -80,13 +83,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MzS-qA-vQy"/>
                     <connections>
                         <outlet property="playerSlider" destination="uNQ-jT-CDh" id="bwk-mp-LTg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1638" y="129"/>
         </scene>
         <!--Play Video Controller-->
         <scene sceneID="q10-RL-dmI">
@@ -97,24 +101,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLU-sX-xX6">
-                                <rect key="frame" x="192" y="433" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
+                                <rect key="frame" x="171" y="433" width="72" height="30"/>
+                                <state key="normal" title="Play Video"/>
                                 <connections>
-                                    <action selector="playPressed:" destination="foa-JD-9LE" eventType="touchUpInside" id="mFJ-ZG-k3k"/>
+                                    <action selector="playVideoPressed:" destination="foa-JD-9LE" eventType="touchUpInside" id="UER-j3-SIj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nR-Wo-ZzF">
+                                <rect key="frame" x="168.5" y="487" width="77" height="30"/>
+                                <state key="normal" title="Play Sound"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="D08-TM-jCW"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="FLU-sX-xX6" firstAttribute="centerX" secondItem="ezW-QC-T40" secondAttribute="centerX" id="1Ca-i3-Xxi"/>
+                            <constraint firstItem="8nR-Wo-ZzF" firstAttribute="centerX" secondItem="ezW-QC-T40" secondAttribute="centerX" id="R9y-g6-X9I"/>
                             <constraint firstItem="FLU-sX-xX6" firstAttribute="centerY" secondItem="ezW-QC-T40" secondAttribute="centerY" id="Y8y-Z5-7ee"/>
+                            <constraint firstItem="8nR-Wo-ZzF" firstAttribute="top" secondItem="FLU-sX-xX6" secondAttribute="bottom" constant="24" id="bAm-7g-37x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NoD-hi-FGf"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHf-WB-F2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="129"/>
+            <point key="canvasLocation" x="915.94202898550736" y="128.57142857142856"/>
         </scene>
     </scenes>
     <resources>

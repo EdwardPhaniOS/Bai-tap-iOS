@@ -9,7 +9,7 @@
 import UIKit
 
 class TableViewCellOfFirstVC: UITableViewCell {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sectionLabel: UILabel!
     
@@ -23,7 +23,7 @@ class TableViewCellOfFirstVC: UITableViewCell {
     @IBAction func watchMorePressed(_ sender: UIButton) {
     }
     
-
+    
 }
 
 //MARK: - UICollectionViewDataSource
@@ -35,27 +35,44 @@ extension TableViewCellOfFirstVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCellOfFirstVC", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCellOfFirstVC", for: indexPath) as! CollectionViewCellOfFirstVC
         
-        cell.layer.cornerRadius = 8
-        cell.layer.borderWidth = 0.5
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.setupAnimation()
         
         return cell
     }
 }
 
-extension TableViewCellOfFirstVC: UICollectionViewDelegateFlowLayout {
+//MARK: - UICollectionViewDelegate
 
+extension TableViewCellOfFirstVC: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.contentView.layer.masksToBounds = true
+        
+        let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension TableViewCellOfFirstVC: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let visiableCell: CGFloat = 2.1
-        let collectionViewWidth = collectionView.frame.width
+        let visiableCell: CGFloat = 2
+        let screenWidth = UIScreen.main.bounds.width
         let minSpace: CGFloat = 10
-        let leftPadding: CGFloat = 5
+        let leftAndRightPadding: CGFloat = 48
         
-        let itemWidth = (collectionViewWidth - minSpace - leftPadding) / visiableCell
+        let itemWidth = (screenWidth - (2*minSpace) - leftAndRightPadding) / visiableCell
         
-        return CGSize(width: itemWidth , height: itemWidth * 1.4)
+        return CGSize(width: itemWidth , height: itemWidth * 1.35)
     }
 }

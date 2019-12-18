@@ -19,6 +19,7 @@ class ThirdViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        //layout bottom view dynamically
     }
 }
 

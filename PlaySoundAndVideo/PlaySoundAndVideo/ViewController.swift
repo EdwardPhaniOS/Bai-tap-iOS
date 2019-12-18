@@ -19,9 +19,7 @@ class ViewController: UIViewController {
     
     private var player: AVAudioPlayer!
     
-    private var isPlaying = false
-    
-    private var timer: Timer!
+    private var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,45 +39,47 @@ class ViewController: UIViewController {
         } catch let err {
             print("Init audioPlayer failed: \(err)")
         }
-        
     }
     
     @IBAction func playPressed(_ sender: UIButton) {
+        createProgressTimer()
         player.play()
-        
-        if !isPlaying {
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-                let currentProcess = Float(self.player.currentTime / self.player.duration)
-                self.playerSlider.setValue(currentProcess, animated: true)
-            }
-            
-            isPlaying = true
-        }
     }
     
     @IBAction func pausePressed(_ sender: UIButton) {
         player.pause()
         
-        timer.invalidate()
-        isPlaying = false
+        if let timer = timer {
+            timer.invalidate()
+        }
     }
     
     @IBAction func stopPressed(_ sender: UIButton) {
         player.stop()
         
-        timer.invalidate()
-        isPlaying = false
+        if let timer = timer {
+            timer.invalidate()
+        }
+    }
+
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        
+        let senderValue = Double(sender.value)
+        let currentTime = player.duration * senderValue
+        
+        player.currentTime = currentTime
+        
+        createProgressTimer()
+        player.play()
     }
     
-    
-    func updateProgress() {
-        if !isPlaying {
+    func createProgressTimer() {
+        
+        if !player.isPlaying {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
                 let currentProcess = Float(self.player.currentTime / self.player.duration)
                 self.playerSlider.setValue(currentProcess, animated: true)
             }
-            
-            isPlaying = true
         }
     }
     

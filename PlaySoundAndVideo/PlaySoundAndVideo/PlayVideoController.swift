@@ -13,10 +13,10 @@ import AVKit
 class PlayVideoController: UIViewController {
     
     var vc: AVPlayerViewController!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareVideo()
     }
@@ -37,11 +37,20 @@ class PlayVideoController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        //        super.viewDidAppear(animated)
+        //
+        //        self.present(vc, animated: true) {
+        //            self.vc.player?.play()
+        //        }
+    }
+    
+    @IBAction func playVideoPressed(_ sender: UIButton) {
         
         self.present(vc, animated: true) {
             self.vc.player?.play()
         }
     }
+    
+    
     
 }

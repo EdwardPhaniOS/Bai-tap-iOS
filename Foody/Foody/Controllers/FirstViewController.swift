@@ -18,11 +18,19 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = 280
         
         featureCollectionView.dataSource = self
         featureCollectionView.delegate = self
+        
+        //TODO: Add Custom view to navigation bar
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+    
 }
 
 extension FirstViewController: UIScrollViewDelegate {
@@ -56,6 +64,15 @@ extension FirstViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
+
+extension FirstViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
 //MARK: - UICollectionViewDataSource
 
 extension FirstViewController: UICollectionViewDataSource {
@@ -75,6 +92,10 @@ extension FirstViewController: UICollectionViewDataSource {
 
 extension FirstViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.contentView.layer.masksToBounds = true
+    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
