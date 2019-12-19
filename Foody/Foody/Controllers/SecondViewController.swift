@@ -42,6 +42,12 @@ class SecondViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
         
     }
+    
+    //MARK: - Handle Actions
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension SecondViewController: UITableViewDataSource {
