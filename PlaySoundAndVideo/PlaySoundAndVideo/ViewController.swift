@@ -24,14 +24,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        createAudioPlayer()
         
-        print("docPath: \(docPath)")
-        
+        self.playerSlider.addTarget(self, action: #selector(onSliderValChanged), for: .valueChanged)
+    }
+    
+    func createAudioPlayer() {
         guard let path = Bundle.main.path(forResource: "If_I_Had_a_Chicken", ofType: "mp3") else { return }
-        
-        print("path: \(path)")
-        
         guard let url = URL(string: path) else { return }
         
         do {
@@ -41,6 +40,9 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    //MARK - Handle user action
+    
     @IBAction func playPressed(_ sender: UIButton) {
         createProgressTimer()
         player.play()
@@ -48,29 +50,34 @@ class ViewController: UIViewController {
     
     @IBAction func pausePressed(_ sender: UIButton) {
         player.pause()
-        
-        if let timer = timer {
-            timer.invalidate()
-        }
+        stopProgressTimer()
     }
     
     @IBAction func stopPressed(_ sender: UIButton) {
         player.stop()
-        
-        if let timer = timer {
-            timer.invalidate()
-        }
+        player.currentTime = 0
+        stopProgressTimer()
     }
-
-    @IBAction func sliderChanged(_ sender: UISlider) {
+    
+    @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
         
-        let senderValue = Double(sender.value)
-        let currentTime = player.duration * senderValue
-        
-        player.currentTime = currentTime
-        
-        createProgressTimer()
-        player.play()
+        if let touchEvent = event.allTouches?.first {
+            
+            switch touchEvent.phase {
+            case.began:
+                stopProgressTimer()
+            case .ended:
+                let senderValue = Double(slider.value)
+                let currentTime = player.duration * senderValue
+                player.currentTime = currentTime
+                
+                createProgressTimer()
+                player.play()
+                
+            default:
+                break
+            }
+        }
     }
     
     func createProgressTimer() {
@@ -80,6 +87,12 @@ class ViewController: UIViewController {
                 let currentProcess = Float(self.player.currentTime / self.player.duration)
                 self.playerSlider.setValue(currentProcess, animated: true)
             }
+        }
+    }
+    
+    func stopProgressTimer() {
+        if let timer = timer {
+            timer.invalidate()
         }
     }
     

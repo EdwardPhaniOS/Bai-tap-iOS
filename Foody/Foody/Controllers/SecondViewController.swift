@@ -8,13 +8,18 @@
 
 import UIKit
 
-class SecondViewController: UITableViewController {
+class SecondViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         tableView.rowHeight = 120
         tableView.separatorStyle = .none
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,8 +28,6 @@ class SecondViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
-//        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -39,22 +42,27 @@ class SecondViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.lightGray]
         
     }
+}
+
+extension SecondViewController: UITableViewDataSource {
     
-    // MARK: - Table view data source methods
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 20
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellOfSecondScreen", for: indexPath)
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "goToThirdScreen", sender: nil)
     }
+    
+}
+
+extension SecondViewController: UITableViewDelegate {
     
 }
