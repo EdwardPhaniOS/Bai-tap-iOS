@@ -73,6 +73,6 @@ extension TableViewCellOfFirstVC: UICollectionViewDelegateFlowLayout {
         
         let itemWidth = (screenWidth - (2*minSpace) - leftAndRightPadding) / visiableCell
         
-        return CGSize(width: itemWidth , height: itemWidth * 1.2)
+        return CGSize(width: itemWidth , height: 200)
     }
 }

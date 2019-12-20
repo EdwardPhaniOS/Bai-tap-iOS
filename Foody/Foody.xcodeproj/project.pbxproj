@@ -20,6 +20,7 @@
 		BD86BD3B23A0AB3600CCF6C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD86BD3923A0AB3600CCF6C1 /* Main.storyboard */; };
 		BD86BD3D23A0AB3800CCF6C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD86BD3C23A0AB3800CCF6C1 /* Assets.xcassets */; };
 		BD86BD4023A0AB3800CCF6C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD86BD3E23A0AB3800CCF6C1 /* LaunchScreen.storyboard */; };
+		BDEEA79023ACA666000B04AD /* RelatedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEEA78F23ACA666000B04AD /* RelatedImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		BD86BD3C23A0AB3800CCF6C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD86BD3F23A0AB3800CCF6C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD86BD4123A0AB3800CCF6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDEEA78F23ACA666000B04AD /* RelatedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +57,10 @@
 			isa = PBXGroup;
 			children = (
 				BD86BD3923A0AB3600CCF6C1 /* Main.storyboard */,
-				BD398CE723A0C0C400F71CA4 /* TableViewCellOfFirstVC.swift */,
-				BD398CE523A0BD8500F71CA4 /* CollectionViewCellOfFirstVC.swift */,
+				BDEEA79123ACA6CD000B04AD /* Welcome Page */,
 				BD28601D23A3783D003AAAD1 /* CustomCollectionViewCell.swift */,
 				BD28601E23A3783D003AAAD1 /* CustomCollectionViewCell.xib */,
+				BDEEA79223ACA707000B04AD /* Booking Page */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -102,6 +104,23 @@
 				BD86BD4123A0AB3800CCF6C1 /* Info.plist */,
 			);
 			path = Foody;
+			sourceTree = "<group>";
+		};
+		BDEEA79123ACA6CD000B04AD /* Welcome Page */ = {
+			isa = PBXGroup;
+			children = (
+				BD398CE723A0C0C400F71CA4 /* TableViewCellOfFirstVC.swift */,
+				BD398CE523A0BD8500F71CA4 /* CollectionViewCellOfFirstVC.swift */,
+			);
+			path = "Welcome Page";
+			sourceTree = "<group>";
+		};
+		BDEEA79223ACA707000B04AD /* Booking Page */ = {
+			isa = PBXGroup;
+			children = (
+				BDEEA78F23ACA666000B04AD /* RelatedImageCell.swift */,
+			);
+			path = "Booking Page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +202,7 @@
 				BD28601F23A3783D003AAAD1 /* CustomCollectionViewCell.swift in Sources */,
 				BD86BD3623A0AB3600CCF6C1 /* SceneDelegate.swift in Sources */,
 				BD28601C23A36ADC003AAAD1 /* SecondViewController.swift in Sources */,
+				BDEEA79023ACA666000B04AD /* RelatedImageCell.swift in Sources */,
 				BD398CE623A0BD8500F71CA4 /* CollectionViewCellOfFirstVC.swift in Sources */,
 				BD398CE823A0C0C400F71CA4 /* TableViewCellOfFirstVC.swift in Sources */,
 			);

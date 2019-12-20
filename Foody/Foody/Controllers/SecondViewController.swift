@@ -14,7 +14,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         tableView.rowHeight = 120
         tableView.separatorStyle = .none
         
@@ -62,13 +62,12 @@ extension SecondViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToThirdScreen", sender: nil)
-    }
-    
 }
 
 extension SecondViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "goToThirdScreen", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

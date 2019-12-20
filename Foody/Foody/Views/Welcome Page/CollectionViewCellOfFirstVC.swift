@@ -21,7 +21,7 @@ class CollectionViewCellOfFirstVC: UICollectionViewCell {
     func setupAnimation() {
         
         // add shadow on cell
-        backgroundColor = .clear // very important
+        backgroundColor = .clear
         layer.masksToBounds = false
         layer.shadowOpacity = 0.23
         layer.shadowRadius = 2

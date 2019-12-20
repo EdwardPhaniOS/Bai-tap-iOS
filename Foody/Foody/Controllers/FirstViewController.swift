@@ -14,6 +14,10 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var featureCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,14 +27,7 @@ class FirstViewController: UIViewController {
         
         featureCollectionView.dataSource = self
         featureCollectionView.delegate = self
-        
-        //TODO: Add Custom view to navigation bar
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
-    }
-    
 }
 
 extension FirstViewController: UIScrollViewDelegate {
