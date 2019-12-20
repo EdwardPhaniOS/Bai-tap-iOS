@@ -8,8 +8,7 @@
 
 import UIKit
 
-let bottomVisiableCell = 4
-
+let bottomVisiableCell = 2
 
 class ThirdViewController: UIViewController {
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ja9-Ne-hd1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ja9-Ne-hd1">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -409,6 +409,12 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="235" height="220"/>
+                                                            <connections>
+                                                                <outlet property="discoutLabel" destination="uPd-iZ-wXh" id="SVS-nA-fHd"/>
+                                                                <outlet property="imageView" destination="hob-kH-KfO" id="vhM-jo-xBg"/>
+                                                                <outlet property="name" destination="KOb-34-NSR" id="V4h-3i-Kop"/>
+                                                                <outlet property="timeAndDistanceLabel" destination="YXN-Wn-vo6" id="uca-C3-3tJ"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -528,13 +534,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="f1k-SE-KVR">
-                                <rect key="frame" x="0.0" y="-45" width="375" height="1045"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKt-8I-YL8" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="948"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1098"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9f-TD-r3V" userLabel="Top View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
+                                                <rect key="frame" x="0.0" y="-50" width="375" height="412"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YbD-Ds-dqi">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
@@ -735,7 +741,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysk-Tq-8r8" userLabel="Bottom View">
-                                                <rect key="frame" x="0.0" y="428" width="375" height="220"/>
+                                                <rect key="frame" x="0.0" y="378" width="375" height="220"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Hình ảnh khác" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79w-qz-Bbo">
                                                         <rect key="frame" x="8" y="7.9999999999999982" width="107.66666666666667" height="19.333333333333329"/>
@@ -810,11 +816,11 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="h9f-TD-r3V" secondAttribute="trailing" id="B96-bs-GHQ"/>
                                             <constraint firstItem="h9f-TD-r3V" firstAttribute="trailing" secondItem="ysk-Tq-8r8" secondAttribute="trailing" id="GYB-6M-BYW"/>
-                                            <constraint firstAttribute="bottom" secondItem="ysk-Tq-8r8" secondAttribute="bottom" constant="300" id="GiT-28-U5Q"/>
+                                            <constraint firstAttribute="bottom" secondItem="ysk-Tq-8r8" secondAttribute="bottom" constant="500" id="GiT-28-U5Q"/>
                                             <constraint firstItem="h9f-TD-r3V" firstAttribute="leading" secondItem="WKt-8I-YL8" secondAttribute="leading" id="Nie-ew-G1T"/>
                                             <constraint firstItem="h9f-TD-r3V" firstAttribute="leading" secondItem="ysk-Tq-8r8" secondAttribute="leading" id="OQm-5n-4sN"/>
                                             <constraint firstItem="ysk-Tq-8r8" firstAttribute="top" secondItem="h9f-TD-r3V" secondAttribute="bottom" constant="16" id="cEK-w4-qzF"/>
-                                            <constraint firstItem="h9f-TD-r3V" firstAttribute="top" secondItem="WKt-8I-YL8" secondAttribute="top" id="s2L-hr-Mum"/>
+                                            <constraint firstItem="h9f-TD-r3V" firstAttribute="top" secondItem="WKt-8I-YL8" secondAttribute="top" constant="-50" id="s2L-hr-Mum"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -854,7 +860,7 @@
                             <constraint firstItem="f1k-SE-KVR" firstAttribute="bottom" secondItem="fEt-QD-Ff5" secondAttribute="bottom" id="Tbv-om-3p7"/>
                             <constraint firstItem="Wqa-Hn-Gky" firstAttribute="bottom" secondItem="17g-Qf-rgc" secondAttribute="bottom" constant="-18" id="cAo-o6-ejN"/>
                             <constraint firstAttribute="trailing" secondItem="f1k-SE-KVR" secondAttribute="trailing" id="gvL-d7-PVL"/>
-                            <constraint firstItem="f1k-SE-KVR" firstAttribute="top" secondItem="fEt-QD-Ff5" secondAttribute="top" constant="-45" id="n11-tN-Q16"/>
+                            <constraint firstItem="f1k-SE-KVR" firstAttribute="top" secondItem="fEt-QD-Ff5" secondAttribute="top" id="n11-tN-Q16"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="17g-Qf-rgc"/>
                     </view>

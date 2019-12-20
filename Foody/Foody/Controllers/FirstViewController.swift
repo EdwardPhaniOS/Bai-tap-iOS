@@ -13,6 +13,8 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var featureCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+ 
+    var foods = FoodFactory.createFood()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
@@ -55,7 +57,15 @@ extension FirstViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TBVCellOfFirstVC", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TBVCellOfFirstVC", for: indexPath) as! TableViewCellOfFirstVC
+        
+        if indexPath.section == 0 {
+            cell.sectionLabel.text = "Khuyến mãi"
+        } else if indexPath.section == 1 {
+            cell.sectionLabel.text = "Mới nhất"
+        } else {
+            cell.sectionLabel.text = "Nhiều người chọn nhất"
+        }
         
         return cell
     }

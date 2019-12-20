@@ -6,24 +6,44 @@
 //  Copyright © 2019 iMac_VTCA. All rights reserved.
 //
 
+//enum CodingKeys available when implement Codable
+
 import UIKit
 
 let API_URL = "http://omdbapi.com/?apikey=7882463&s=batman"
 
-struct Movie {
+struct Movie: Codable {
     var title: String
     var year: String
     var imdbID: String
-    var type: String
+    var `Type`: String
     var poster: String
     
-    init(with dict: [String : Any]) {
-        
-        self.title = dict["Title"] as? String ?? ""
-        self.year = dict["Year"] as? String ?? ""
-        self.imdbID = dict["imdbID"] as? String ?? ""
-        self.type = dict["Type"] as? String ?? ""
-        self.poster = dict["Poster"] as? String ?? ""
+    //    init(with dict: [String : Any]) {
+    //
+    //        self.title = dict["Title"] as? String ?? ""
+    //        self.year = dict["Year"] as? String ?? ""
+    //        self.imdbID = dict["imdbID"] as? String ?? ""
+    //        self.type = dict["Type"] as? String ?? ""
+    //        self.poster = dict["Poster"] as? String ?? ""
+    //    }
+    
+    private enum CodingKeys : String, CodingKey {
+        case title = "Title"
+        case year = "Year"
+        case imdbID, `Type`
+        case poster = "Poster"
+    }
+    
+}
+
+struct Search: Codable {
+    var search: [Movie]
+//    var totalResults: String
+//    var Response: String
+    
+    private enum CodingKeys : String, CodingKey {
+        case search = "Search"
     }
 }
 
@@ -62,20 +82,25 @@ class ViewController: UIViewController {
                     response.statusCode == 200 {
                     
                     do {
-                        let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        //                        let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        //
+                        //                        if let dictionary = jsonObject as? [String : Any] {
+                        //
+                        //                            if let arraySearchDict = dictionary["Search"] as? [[String : Any]] {
+                        //
+                        //                                for dict in arraySearchDict {
+                        //
+                        //                                    let model = Movie(with: dict)
+                        //                                    self.arrayMovie.append(model)
+                        //                                }
+                        //                            }
+                        //                            print(self.arrayMovie.first ?? "")
+                        //                        }
                         
-                        if let dictionary = object as? [String : Any] {
-                            
-                            if let arraySearchDict = dictionary["Search"] as? [[String : Any]] {
-                                
-                                for dict in arraySearchDict {
-                
-                                    let model = Movie(with: dict)
-                                    self.arrayMovie.append(model)
-                                }
-                            }
-                            print(self.arrayMovie.first ?? "")
-                        }
+                        let jsonDecoder = JSONDecoder()
+                        let movie = try jsonDecoder.decode(Search.self, from: data)
+                        print(movie)
+                        
                         
                     } catch {
                         print("Error: \(error)")

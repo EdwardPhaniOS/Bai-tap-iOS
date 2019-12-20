@@ -10,6 +10,11 @@ import UIKit
 
 class CollectionViewCellOfFirstVC: UICollectionViewCell {
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var timeAndDistanceLabel: UILabel!
+    @IBOutlet weak var discoutLabel: UILabel!
+    
     func getCellSize(_ targetSize: CGSize) -> CGSize {
         return CGSize(width: targetSize.width, height: targetSize.height)
     }
@@ -31,5 +36,16 @@ class CollectionViewCellOfFirstVC: UICollectionViewCell {
         // add corner radius on `contentView`
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 8
+    }
+    
+    func setUpDisplay(food: Food) {
+        let imageName = food.imageName
+        self.imageView.image = UIImage(named: imageName)
+        self.name.text = food.name
+        
+        if let discount = food.discout {
+            self.discoutLabel.text = "\(discount)"
+        }
+     //--km · --ph
     }
 }
