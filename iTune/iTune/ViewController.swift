@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var tracks = [Track]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,11 +27,8 @@ class ViewController: UIViewController {
         tableView.delegate = self
         
         let networkManager = NetworkManager()
-        networkManager.requestAPI()
-        
+        tracks = networkManager.requestAPI()
     }
-    
-    
 }
 
 //MARK: - UITableViewDataSource
@@ -37,13 +36,15 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return tracks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as! TrackCell
         cell.backgroundColor = .clear
+        cell.songNameLabel.text = tracks[indexPath.row].trackName
+        cell.artistLabel.text = tracks[indexPath.row].artistName
         
         return cell
     }
@@ -53,6 +54,9 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 
