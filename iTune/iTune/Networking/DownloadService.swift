@@ -12,13 +12,27 @@ struct DownloadService {
     
     var downloadSession: URLSession!
     
-    func startDownload(with track: Track) {
+    var activeDownloads: [String: Download] = [:]
+    
+    mutating func startDownload(with track: Track) {
      
+//        guard let url = URL(string: track.previewUrl) else { return }
+//
+//        let downloadTask = downloadSession.downloadTask(with: url)
+//
+//        downloadTask.resume()
+        
+        var download = Download(track: track)
+        
         guard let url = URL(string: track.previewUrl) else { return }
         
-        let downloadTask = downloadSession.downloadTask(with: url)
+        download.task = downloadSession.downloadTask(with: url)
         
-        downloadTask.resume()
+        download.task?.resume()
+        
+        download.isDownloading = true
+        
+        activeDownloads[download.track.previewUrl] = download
     }
     
     
