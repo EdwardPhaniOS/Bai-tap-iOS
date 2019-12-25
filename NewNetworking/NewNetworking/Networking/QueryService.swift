@@ -78,16 +78,19 @@ class QueryService {
       
       var index = 0
       
-      for trackDictionary in array {
-        if let trackDictionary = trackDictionary as? JSONDictionary,
-          let previewURL = trackDictionary["previewUrl"] as? String,
-          let name = trackDictionary["trackName"] as? String,
-          let artist = trackDictionary["artistName"] as? String {
-            tracks.append(Track(name: name, artist: artist, previewURL: previewURL))
-            index += 1
-        } else {
-          errorMessage += "Problem parsing trackDictionary\n"
+        for trackDictionary in array {
+            if let trackDictionary = trackDictionary as? JSONDictionary,
+                let previewURLString = trackDictionary["previewUrl"] as? String,
+                let previewURL = URL(string: previewURLString),
+                let name = trackDictionary["trackName"] as? String,
+                let artist = trackDictionary["artistName"] as? String {
+                
+                tracks.append(Track(name: name, artist: artist, previewURL: previewURL, index: index))
+                index += 1
+    
+            } else {
+                errorMessage += "Problem parsing trackDictionary\n"
+            }
         }
-      }
     }
 }
