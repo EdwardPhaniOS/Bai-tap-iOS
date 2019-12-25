@@ -6,6 +6,8 @@
 //  Copyright © 2019 iMac_VTCA. All rights reserved.
 //
 
+//https://viblo.asia/p/urlsession-chua-bao-gio-de-dang-den-vay-GrLZDQanlk0#_welcome-to-downloadtask-4
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -20,8 +22,12 @@ class ViewController: UIViewController {
     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     var queryService = QueryService()
-    var downloadService = DownloadService()
-
+    var
+    downloadService = DownloadService()
+    
+    var selectedIndexes = [IndexPath]()
+    var isDownloading: Bool = false
+    
     var tracks = [Track]() {
         didSet {
             tableView.reloadData()
@@ -34,6 +40,7 @@ class ViewController: UIViewController {
         let configuration = URLSessionConfiguration.background(withIdentifier: "download")
         
         return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        
     }()
     
     override func viewDidLoad() {
@@ -58,7 +65,7 @@ class ViewController: UIViewController {
         
         //iOS 12 and before we need this line of code to solve confict between tap gesture and did select row at index path of Table View
         //this mean: tap gesture wil cancel touch event if that position has another view
-//        sender.cancelsTouchesInView = false
+        sender.cancelsTouchesInView = false
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -147,12 +154,20 @@ extension ViewController: TrackCellDelegate {
         
         if let indexPath = tableView.indexPath(for: cell) {
             let track = tracks[indexPath.row]
+            selectedIndexes.append(indexPath)
             downloadService.startDownload(with: track)
         }
     }
     
     func cancelTapped(_ cell: TrackCell) {
-        //
+        if let indexPath = tableView.indexPath(for: cell) {
+            let track = tracks[indexPath.row]
+            
+            if let dowload = downloadService.activeDownloads[track.previewUrl] {
+                dowload.task?.cancel()
+                downloadService.activeDownloads[track.previewUrl] = nil
+            }
+        }
     }
 }
 
@@ -187,6 +202,37 @@ extension ViewController: URLSessionDownloadDelegate {
                 try fileManager.copyItem(at: location, to: destinationUrl)
             } catch let error {
                 print(error.localizedDescription)
+            }
+        }
+//
+//        let download = downloadService.activeDownloads[sourceURL.absoluteString]
+//        downloadService.activeDownloads[sourceURL.absoluteString] = nil
+//
+//        self.tableView.reloadData()
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
+        
+        DispatchQueue.main.async {
+
+//            let count = self.selectedIndexes.count
+//
+//            if count > 0 {
+//                if let cell = self.tableView.cellForRow(at: self.selectedIndexes[count - 1]) as? TrackCell {
+//                    cell.updateDisplay(progress: progress, totalSize: totalSize)
+//                }
+//            }
+            
+            let count = self.selectedIndexes.count
+            
+            if count > 0 {
+                if let cell = self.tableView.cellForRow(at: self.selectedIndexes[count - 1]) as? TrackCell {
+                    cell.updateDisplay(progress: progress, totalSize: totalSize)
+                }
             }
         }
     }
