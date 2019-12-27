@@ -17,6 +17,7 @@ class Download {
     var resumeData: Data?
     var task: URLSessionDownloadTask?
     var track: Track
+    var dowloaded: Bool = false
     
     //
     // Mark: - Initialization

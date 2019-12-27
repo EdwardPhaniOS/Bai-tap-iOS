@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfr-PP-1ts">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfr-PP-1ts">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,12 +66,15 @@
                                                     </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmF-bf-TdE">
-                                                    <rect key="frame" x="300" y="25" width="42" height="30"/>
+                                                    <rect key="frame" x="292" y="25" width="50" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="K1t-06-6L0"/>
-                                                        <constraint firstAttribute="width" constant="42" id="XxB-aD-5cv"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="XxB-aD-5cv"/>
                                                     </constraints>
                                                     <state key="normal" title="Pause"/>
+                                                    <connections>
+                                                        <action selector="pauseButtonPressed:" destination="Rav-iK-KAd" eventType="touchUpInside" id="VxH-E5-54D"/>
+                                                    </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zU-xB-O7H">
                                                     <rect key="frame" x="356" y="25" width="48" height="30"/>
@@ -80,6 +83,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="gKb-Ou-QYy"/>
                                                     </constraints>
                                                     <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelButtonPressed:" destination="Rav-iK-KAd" eventType="touchUpInside" id="DXO-mu-a8f"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

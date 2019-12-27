@@ -98,7 +98,10 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SongTableViewCell.createCell(tableView: tableView)
-        cell.visulizeCell(with: searchResults[indexPath.row])
+        let track = searchResults[indexPath.row]
+        
+        cell.visulizeCell(with: track, download: downloadService.activeDownload[track.previewURL])
+        
         cell.delegate = self
         return cell
     }
@@ -117,7 +120,7 @@ extension SearchViewController: UITableViewDelegate {
 //MARK: - UITableViewDelegate
 //
 extension SearchViewController: SongTableViewCellDelegate {
-    
+   
     func downloadTapped(_ cell: SongTableViewCell) {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]
@@ -132,11 +135,17 @@ extension SearchViewController: SongTableViewCellDelegate {
         }
     }
     
+    func pauseTapped(_ cell: SongTableViewCell) {
+        if let indexPath = contentTableView.indexPath(for: cell) {
+            let track = searchResults[indexPath.row]
+            downloadService.pauseDownload(with: track)
+        }
+    }
+    
     func resumeTapped(_ cell: SongTableViewCell) {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]
             downloadService.resumeDownload(with: track)
-            
         }
     }
 }
@@ -154,12 +163,12 @@ extension SearchViewController: URLSessionDelegate {
 extension SearchViewController: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         
-        guard let sourceURL = downloadTask.originalRequest?.url else {
-            return
+        guard
+            let sourceUrl = downloadTask.originalRequest?.url,
+            let download = downloadService.activeDownload[sourceUrl] else {
+                return
         }
-        
-        print(documentsPath)
-        let lastPathComponent = sourceURL.lastPathComponent
+        let lastPathComponent = sourceUrl.lastPathComponent
         
         let destinationURL = documentsPath.appendingPathComponent(lastPathComponent)
         print(destinationURL)
@@ -169,8 +178,15 @@ extension SearchViewController: URLSessionDownloadDelegate {
         
         do {
             try fileManager.copyItem(at: location, to: destinationURL)
+            download.track.isDownloaded = true
         } catch let error {
             print(error.localizedDescription)
+        }
+        
+        let indexPath = IndexPath(row: download.track.index, section: 0)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.contentTableView.reloadRows(at: [indexPath], with: .none)
         }
     }
     
@@ -182,6 +198,7 @@ extension SearchViewController: URLSessionDownloadDelegate {
                 return
         }
         
+        
         download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
         let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
         
@@ -190,10 +207,7 @@ extension SearchViewController: URLSessionDownloadDelegate {
             let indexPath = IndexPath(row: download.track.index, section: 0)
             
             if let cell = self.contentTableView.cellForRow(at: indexPath) as? SongTableViewCell {
-                cell.updateDisplay(progress: download
-                    .progress, totalSize: totalSize, download: download)
-                
-                self.contentTableView.reloadRows(at: [indexPath], with: .automatic)
+                cell.updateDisplay(progress: download.progress, totalSize: totalSize, download: download)
             }
         }
     }
