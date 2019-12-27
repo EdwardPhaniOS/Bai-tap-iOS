@@ -22,8 +22,6 @@ class SearchViewController: UIViewController {
     
     var searchResults: [Track] = []
     
-    var currentIndexPath: IndexPath?
-    
     lazy var tapRecognizer: UITapGestureRecognizer = {
         var recognizer = UITapGestureRecognizer(target:self, action: #selector(dismissKeyboard))
         return recognizer
@@ -34,15 +32,18 @@ class SearchViewController: UIViewController {
         return URLSession(configuration: configureation, delegate: self, delegateQueue: nil)
     }()
     
+    //
+    //MARK: - View life cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         downloadService.downloadsSession = downloadsSession
         getTrackWithName("Happy new year")
     }
     
-    //MARK :- private function
+    //MARK :- Private function
     
     @objc func dismissKeyboard() {
         searchBar.resignFirstResponder()
@@ -50,50 +51,46 @@ class SearchViewController: UIViewController {
     
     private func getTrackWithName(_ songName: String) {
         queryService.getSearchResults(searchTerm: songName) { [weak self] results, errorMessage in
-          
-          if let results = results {
-            self?.searchResults = results
-            self?.contentTableView.reloadData()
-            self?.contentTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-          }
-          
-          if !errorMessage.isEmpty {
-            print("Search error: " + errorMessage)
-          }
+            
+            if let results = results {
+                self?.searchResults = results
+                self?.contentTableView.reloadData()
+                self?.contentTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+            
+            if !errorMessage.isEmpty {
+                print("Search error: " + errorMessage)
+            }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+//
+//MARK: - UISearchBarDelegate
+//
 extension SearchViewController: UISearchBarDelegate {
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    dismissKeyboard()
-    
-    guard let searchText = searchBar.text, !searchText.isEmpty else {
-      return
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+        
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            return
+        }
+        
+        getTrackWithName(searchText)
     }
     
-    getTrackWithName(searchText)
-  }
-  
-  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    view.addGestureRecognizer(tapRecognizer)
-  }
-
-  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-    view.removeGestureRecognizer(tapRecognizer)
-  }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        view.removeGestureRecognizer(tapRecognizer)
+    }
 }
 
+//
+//MARK: - UITableViewDataSource
+//
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
@@ -107,33 +104,55 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
+//
+//MARK: - UITableViewDelegate
+//
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
+//
+//MARK: - UITableViewDelegate
+//
 extension SearchViewController: SongTableViewCellDelegate {
+    
     func downloadTapped(_ cell: SongTableViewCell) {
         if let indexPath = contentTableView.indexPath(for: cell) {
-            currentIndexPath = indexPath
             let track = searchResults[indexPath.row]
             downloadService.startDownload(with: track)
         }
-    
     }
     
     func cancelTapped(_ cell: SongTableViewCell) {
-        
+        if let indexPath = contentTableView.indexPath(for: cell) {
+            let track = searchResults[indexPath.row]
+            downloadService.cancelDownload(with: track)
+        }
+    }
+    
+    func resumeTapped(_ cell: SongTableViewCell) {
+        if let indexPath = contentTableView.indexPath(for: cell) {
+            let track = searchResults[indexPath.row]
+            downloadService.resumeDownload(with: track)
+            
+        }
     }
 }
+
+//
+//MARK: - URLSessionDelegate
+//
 extension SearchViewController: URLSessionDelegate {
     
 }
 
+//
+//MARK: - URLSessionDownloadDelegate
+//
 extension SearchViewController: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        
         
         guard let sourceURL = downloadTask.originalRequest?.url else {
             return
@@ -144,8 +163,6 @@ extension SearchViewController: URLSessionDownloadDelegate {
         
         let destinationURL = documentsPath.appendingPathComponent(lastPathComponent)
         print(destinationURL)
-        
-        
         
         let fileManager = FileManager.default
         try? fileManager.removeItem(at: destinationURL)
@@ -159,37 +176,25 @@ extension SearchViewController: URLSessionDownloadDelegate {
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
-        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
-        
-        
-        DispatchQueue.main.async {
-            if let indexPath = self.currentIndexPath,
-              let cell = self.contentTableView.cellForRow(at: indexPath) as? SongTableViewCell {
-              cell.updateDisplay(progress: progress, totalSize: totalSize)
-          }
+        guard
+            let sourceUrl = downloadTask.originalRequest?.url,
+            let download = downloadService.activeDownload[sourceUrl] else {
+                return
         }
         
+        download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
         
-        print("progress = \(progress) totalSize = \(totalSize)")
+        DispatchQueue.main.async {
+            
+            let indexPath = IndexPath(row: download.track.index, section: 0)
+            
+            if let cell = self.contentTableView.cellForRow(at: indexPath) as? SongTableViewCell {
+                cell.updateDisplay(progress: download
+                    .progress, totalSize: totalSize, download: download)
+                
+                self.contentTableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }
     }
-    
-//    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
-//                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
-//                    totalBytesExpectedToWrite: Int64) {
-      
-      
-      // 2
-//      let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-//      // 3
-//      let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
-//
-//      // 4
-//      DispatchQueue.main.async {
-//        if let trackCell = self.tableView.cellForRow(at: IndexPath(row: download.track.index,
-//                                                                   section: 0)) as? TrackCell {
-//          trackCell.updateDisplay(progress: progress, totalSize: totalSize)
-//        }
-//      }
-//    }
 }

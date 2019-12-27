@@ -11,6 +11,7 @@ import UIKit
 protocol SongTableViewCellDelegate: class {
     func downloadTapped(_ cell: SongTableViewCell)
     func cancelTapped(_ cell: SongTableViewCell)
+    func resumeTapped(_ cell: SongTableViewCell)
 }
 
 class SongTableViewCell: UITableViewCell, Cell {
@@ -19,6 +20,11 @@ class SongTableViewCell: UITableViewCell, Cell {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var downloadProgress: UIProgressView!
     @IBOutlet weak var percentLabel: UILabel!
+    
+    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
     
     weak var delegate: SongTableViewCellDelegate?
 
@@ -38,12 +44,25 @@ class SongTableViewCell: UITableViewCell, Cell {
     }
     
     func visulizeCell(with track: Track) {
-        songNameLabel.text = track.trackName
-        artistLabel.text = track.artistName
+        songNameLabel.text = track.name
+        artistLabel.text = track.artist
+        
+        pauseButton.setTitle("Pause", for: .normal)
     }
     
-    func updateDisplay(progress: Float, totalSize : String) {
+    func updateDisplay(progress: Float, totalSize : String, download: Download) {
       downloadProgress.progress = progress
       percentLabel.text = String(format: "%.1f%% of %@", progress * 100, totalSize)
+        
+        if download.isDownloading {
+            downloadButton.isHidden = true
+            pauseButton.isHidden = false
+            cancelButton.isHidden = false
+        
+        } else {
+            downloadButton.isHidden = false
+            pauseButton.isHidden = true
+            cancelButton.isHidden = true
+        }
     }
 }

@@ -10,17 +10,55 @@ import Foundation
 
 class DownloadService {
     
+    //
+    // MARK: - Variables And Properties
+    //
+    var activeDownload: [URL: Download] = [:]
+
     var downloadsSession: URLSession!
     
+    //
+    //MARK: - Internal methods
+    //
     func startDownload(with track: Track) {
-        guard let url = URL(string: track.previewUrl) else {
-             return
-        }
         
-        let downloadTask = downloadsSession.downloadTask(with: url)
+        let download = Download(track: track)
         
-        downloadTask.resume()
+        download.task = downloadsSession.downloadTask(with: track.previewURL)
+        
+        download.task?.resume()
+        
+        download.isDownloading = true
+        
+        activeDownload[download.track.previewURL] = download
     }
     
-
+    func cancelDownload(with track: Track) {
+        guard let download = activeDownload[track.previewURL] else { return }
+        
+        download.task?.cancel()
+        activeDownload[track.previewURL] = nil
+    }
+    
+    func pauseDownload(with track: Track) {
+        guard let download = activeDownload[track.previewURL],
+            download.isDownloading else { return }
+        
+        download.task?.cancel(byProducingResumeData: { (data) in
+            download.resumeData = data
+        })
+        
+        download.isDownloading = false
+    }
+    
+    func resumeDownload(with track: Track) {
+        guard let download = activeDownload[track.previewURL] else { return }
+        
+        if let resumeData = download.resumeData {
+            download.task = downloadsSession.downloadTask(withResumeData: resumeData)
+        }
+        
+        download.task?.resume()
+        download.isDownloading = true
+    }
 }
