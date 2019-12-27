@@ -10,22 +10,13 @@ import UIKit
 
 struct Track: Codable {
     
-    //
-    // MARK: - Constants
-    //
     let artist: String
     let index: Int
     let name: String
     let previewURL: URL
     
-    //
-    // MARK: - Variables And Properties
-    //
     var isDownloaded = false
     
-    //
-    // MARK: - Initialization
-    //
     init(name: String, artist: String, previewURL: URL, index: Int) {
         self.name = name
         self.artist = artist

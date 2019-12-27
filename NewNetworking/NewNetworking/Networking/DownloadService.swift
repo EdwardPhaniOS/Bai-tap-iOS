@@ -34,13 +34,16 @@ class DownloadService {
     }
     
     func cancelDownload(with track: Track) {
+        
         guard let download = activeDownload[track.previewURL] else { return }
         
         download.task?.cancel()
+        download.resumeData = nil
         activeDownload[track.previewURL] = nil
     }
     
     func pauseDownload(with track: Track) {
+        
         guard let download = activeDownload[track.previewURL],
             download.isDownloading else { return }
         
@@ -52,6 +55,7 @@ class DownloadService {
     }
     
     func resumeDownload(with track: Track) {
+        
         guard let download = activeDownload[track.previewURL] else { return }
         
         if let resumeData = download.resumeData {

@@ -8,7 +8,9 @@
 
 import UIKit
 
+//
 // MARK: Cell extension
+//
 public protocol Cell {
     static var identify: String { get }
 }

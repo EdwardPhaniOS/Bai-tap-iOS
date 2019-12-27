@@ -10,16 +10,20 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    //
     //MARK :- Outlet
+    //
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    //MARK :- Variables
+    //
+    //MARK: - Constant
+    //
     let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    
     let queryService = QueryService()
     let downloadService = DownloadService()
     
+    //MARK :- Variables
     var searchResults: [Track] = []
     
     lazy var tapRecognizer: UITapGestureRecognizer = {
@@ -43,8 +47,9 @@ class SearchViewController: UIViewController {
         getTrackWithName("Happy new year")
     }
     
+    //
     //MARK :- Private function
-    
+    //
     @objc func dismissKeyboard() {
         searchBar.resignFirstResponder()
     }
@@ -100,7 +105,7 @@ extension SearchViewController: UITableViewDataSource {
         let cell = SongTableViewCell.createCell(tableView: tableView)
         let track = searchResults[indexPath.row]
         
-        cell.visulizeCell(with: track, download: downloadService.activeDownload[track.previewURL])
+        cell.visualizeCell(with: track, download: downloadService.activeDownload[track.previewURL])
         
         cell.delegate = self
         return cell
@@ -117,7 +122,7 @@ extension SearchViewController: UITableViewDelegate {
 }
 
 //
-//MARK: - UITableViewDelegate
+//MARK: - SongTableViewCellDelegate
 //
 extension SearchViewController: SongTableViewCellDelegate {
    
@@ -165,9 +170,9 @@ extension SearchViewController: URLSessionDownloadDelegate {
         
         guard
             let sourceUrl = downloadTask.originalRequest?.url,
-            let download = downloadService.activeDownload[sourceUrl] else {
-                return
-        }
+            let download = downloadService.activeDownload[sourceUrl]
+            else { return }
+        
         let lastPathComponent = sourceUrl.lastPathComponent
         
         let destinationURL = documentsPath.appendingPathComponent(lastPathComponent)
@@ -194,10 +199,8 @@ extension SearchViewController: URLSessionDownloadDelegate {
         
         guard
             let sourceUrl = downloadTask.originalRequest?.url,
-            let download = downloadService.activeDownload[sourceUrl] else {
-                return
-        }
-        
+            let download = downloadService.activeDownload[sourceUrl]
+            else { return }
         
         download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
         let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)

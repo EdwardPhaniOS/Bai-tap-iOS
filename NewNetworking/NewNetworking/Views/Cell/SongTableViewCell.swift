@@ -16,8 +16,9 @@ protocol SongTableViewCellDelegate: class {
 }
 
 class SongTableViewCell: UITableViewCell, Cell {
-    
+    //
     //MARK: - Outlet
+    //
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var downloadProgress: UIProgressView!
@@ -41,8 +42,6 @@ class SongTableViewCell: UITableViewCell, Cell {
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         
-        print(sender.titleLabel?.text ?? "default")
-        
         if sender.titleLabel?.text == "Pause" {
             delegate?.pauseTapped(self)
             sender.setTitle("Resume", for: .normal)
@@ -54,11 +53,13 @@ class SongTableViewCell: UITableViewCell, Cell {
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        
         delegate?.cancelTapped(self)
         
         downloadButton.isHidden = false
         cancelButton.isHidden = true
         pauseButton.isHidden = true
+        
         pauseButton.setTitle("Pause", for: .normal)
         
         downloadProgress.progress = 0
@@ -69,7 +70,7 @@ class SongTableViewCell: UITableViewCell, Cell {
     //
     //MARK: - Display cell
     //
-    func visulizeCell(with track: Track, download: Download?) {
+    func visualizeCell(with track: Track, download: Download?) {
         
         songNameLabel.text = track.name
         artistLabel.text = track.artist
@@ -89,6 +90,7 @@ class SongTableViewCell: UITableViewCell, Cell {
             downloadProgress.isHidden = false
             
             downloadProgress.progress = 0
+            
             percentLabel.text = "0% of 0.0 MB"
         }
     }
@@ -111,16 +113,20 @@ class SongTableViewCell: UITableViewCell, Cell {
             
         } else {
             
-            if pauseButton.titleLabel?.text == "Pause" {
-                downloadButton.isHidden = true
-                pauseButton.isHidden = false
-                cancelButton.isHidden = false
-                
-            } else {
-                downloadButton.isHidden = false
-                pauseButton.isHidden = true
-                cancelButton.isHidden = true
-            }
+            downloadButton.isHidden = true
+            pauseButton.isHidden = false
+            cancelButton.isHidden = false
+            
+//            if pauseButton.titleLabel?.text == "Pause" {
+//                downloadButton.isHidden = true
+//                pauseButton.isHidden = false
+//                cancelButton.isHidden = false
+//                
+//            } else {
+//                downloadButton.isHidden = false
+//                pauseButton.isHidden = true
+//                cancelButton.isHidden = true
+//            }
         }
     }
 }
