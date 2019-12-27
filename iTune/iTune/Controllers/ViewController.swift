@@ -22,8 +22,7 @@ class ViewController: UIViewController {
     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     var queryService = QueryService()
-    var
-    downloadService = DownloadService()
+    var downloadService = DownloadService()
     
     var selectedIndexes = [IndexPath]()
     var isDownloading: Bool = false
