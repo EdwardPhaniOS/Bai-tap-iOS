@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol SongTableViewCellDelegate: class {
     func downloadTapped(_ cell: SongTableViewCell)
@@ -27,11 +28,14 @@ class SongTableViewCell: UITableViewCell, Cell {
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
     
     //
-    //MARK: - Variable
+    //MARK: - Variable, Constants
     //
     weak var delegate: SongTableViewCellDelegate?
+    let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    var audioPlayer: AVAudioPlayer!
     
     //
     //MARK: - Handle Actions
@@ -63,8 +67,21 @@ class SongTableViewCell: UITableViewCell, Cell {
         pauseButton.setTitle("Pause", for: .normal)
         
         downloadProgress.progress = 0
-        
         percentLabel.text = "0% of 0.0 MB"
+    }
+    
+    @IBAction func playButtonTapped(_ sender: Any) {
+        
+        let playButton = sender as! UIButton
+      
+        if !audioPlayer.isPlaying {
+            playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
+            audioPlayer.play()
+            
+        } else {
+            playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+            audioPlayer.pause()
+        }
     }
     
     //
@@ -81,6 +98,9 @@ class SongTableViewCell: UITableViewCell, Cell {
             cancelButton.isHidden = true
             percentLabel.isHidden = true
             downloadProgress.isHidden = true
+            playButton.isHidden = false
+            
+            createAudioPlayer(with: track)
             
         } else {
             downloadButton.isHidden = false
@@ -95,6 +115,19 @@ class SongTableViewCell: UITableViewCell, Cell {
         }
     }
     
+    private func createAudioPlayer(with track: Track) {
+        if audioPlayer == nil {
+            let lastPathComponent = track.previewURL.lastPathComponent
+            let audioURL = documentsPath.appendingPathComponent(lastPathComponent)
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+                audioPlayer.delegate = self
+            } catch {
+                print("Init audioPlayer failed: \(error)")
+            }
+        }
+    }
+    
     func updateDisplay(progress: Float, totalSize : String, download: Download) {
         
         downloadProgress.progress = progress
@@ -105,28 +138,20 @@ class SongTableViewCell: UITableViewCell, Cell {
             pauseButton.isHidden = false
             cancelButton.isHidden = false
             
-            if progress == 1 {
-                downloadButton.isHidden = false
-                pauseButton.isHidden = true
-                cancelButton.isHidden = true
-            }
-            
         } else {
-            
             downloadButton.isHidden = true
             pauseButton.isHidden = false
             cancelButton.isHidden = false
-            
-//            if pauseButton.titleLabel?.text == "Pause" {
-//                downloadButton.isHidden = true
-//                pauseButton.isHidden = false
-//                cancelButton.isHidden = false
-//                
-//            } else {
-//                downloadButton.isHidden = false
-//                pauseButton.isHidden = true
-//                cancelButton.isHidden = true
-//            }
+        }
+    }
+}
+
+extension SongTableViewCell: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+        if flag {
+            playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
         }
     }
 }

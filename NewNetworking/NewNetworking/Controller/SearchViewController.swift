@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class SearchViewController: UIViewController {
     
@@ -125,7 +126,7 @@ extension SearchViewController: UITableViewDelegate {
 //MARK: - SongTableViewCellDelegate
 //
 extension SearchViewController: SongTableViewCellDelegate {
-   
+    
     func downloadTapped(_ cell: SongTableViewCell) {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]

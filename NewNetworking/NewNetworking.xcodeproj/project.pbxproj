@@ -19,6 +19,7 @@
 		52677C8923B0DFD600B7A112 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52677C8823B0DFD600B7A112 /* Track.swift */; };
 		52677C8C23B0E0BF00B7A112 /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52677C8B23B0E0BF00B7A112 /* QueryService.swift */; };
 		87112D1B23B38ED80090EE36 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87112D1A23B38ED80090EE36 /* Download.swift */; };
+		BDFD3FA923B9B6A600FCA344 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFD3FA823B9B6A600FCA344 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		52677C8823B0DFD600B7A112 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		52677C8B23B0E0BF00B7A112 /* QueryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
 		87112D1A23B38ED80090EE36 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		BDFD3FA823B9B6A600FCA344 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDFD3FA923B9B6A600FCA344 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,7 @@
 				523A1D2723AA5C21006C93DE /* NewNetworking */,
 				523A1D2623AA5C21006C93DE /* Products */,
 				523A1D2A23AA5C21006C93DE /* SceneDelegate.swift */,
+				BDFD3FA723B9B6A600FCA344 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +127,14 @@
 				523A1D2E23AA5C21006C93DE /* Main.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BDFD3FA723B9B6A600FCA344 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDFD3FA823B9B6A600FCA344 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
