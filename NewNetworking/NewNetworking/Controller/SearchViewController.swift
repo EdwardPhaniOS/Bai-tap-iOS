@@ -69,6 +69,10 @@ class SearchViewController: UIViewController {
             }
         }
     }
+    
+    private func reload(_ row: Int) {
+      contentTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+    }
 }
 
 //
@@ -104,11 +108,16 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SongTableViewCell.createCell(tableView: tableView)
+        cell.delegate = self
+        
         let track = searchResults[indexPath.row]
         
-        cell.visualizeCell(with: track, download: downloadService.activeDownload[track.previewURL])
+//        cell.visualizeCell(with: track, download: downloadService.activeDownload[track.previewURL])
         
-        cell.delegate = self
+        cell.configure(track: track,
+        downloaded: track.isDownloaded,
+        download: downloadService.activeDownload[track.previewURL])
+       
         return cell
     }
 }
@@ -131,6 +140,7 @@ extension SearchViewController: SongTableViewCellDelegate {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]
             downloadService.startDownload(with: track)
+            reload(indexPath.row)
         }
     }
     
@@ -138,6 +148,7 @@ extension SearchViewController: SongTableViewCellDelegate {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]
             downloadService.cancelDownload(with: track)
+            reload(indexPath.row)
         }
     }
     
@@ -145,6 +156,7 @@ extension SearchViewController: SongTableViewCellDelegate {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]
             downloadService.pauseDownload(with: track)
+            reload(indexPath.row)
         }
     }
     
@@ -152,6 +164,7 @@ extension SearchViewController: SongTableViewCellDelegate {
         if let indexPath = contentTableView.indexPath(for: cell) {
             let track = searchResults[indexPath.row]
             downloadService.resumeDownload(with: track)
+            reload(indexPath.row)
         }
     }
 }
@@ -173,6 +186,8 @@ extension SearchViewController: URLSessionDownloadDelegate {
             let sourceUrl = downloadTask.originalRequest?.url,
             let download = downloadService.activeDownload[sourceUrl]
             else { return }
+        
+//        downloadService.activeDownload[sourceUrl] = nil
         
         let lastPathComponent = sourceUrl.lastPathComponent
         
@@ -211,7 +226,8 @@ extension SearchViewController: URLSessionDownloadDelegate {
             let indexPath = IndexPath(row: download.track.index, section: 0)
             
             if let cell = self.contentTableView.cellForRow(at: indexPath) as? SongTableViewCell {
-                cell.updateDisplay(progress: download.progress, totalSize: totalSize, download: download)
+//                cell.updateDisplay(progress: download.progress, totalSize: totalSize, download: download)
+                cell.updateDisplay(progress: download.progress, totalSize: totalSize)
             }
         }
     }

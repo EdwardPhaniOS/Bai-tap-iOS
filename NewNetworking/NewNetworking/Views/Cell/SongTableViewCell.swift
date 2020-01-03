@@ -33,9 +33,12 @@ class SongTableViewCell: UITableViewCell, Cell {
     //
     //MARK: - Variable, Constants
     //
-    weak var delegate: SongTableViewCellDelegate?
     let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     var audioPlayer: AVAudioPlayer!
+    var track: Track?
+    
+    //Delegate
+    weak var delegate: SongTableViewCellDelegate?
     
     //
     //MARK: - Handle Actions
@@ -46,13 +49,10 @@ class SongTableViewCell: UITableViewCell, Cell {
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         
-        if sender.titleLabel?.text == "Pause" {
+        if(pauseButton.titleLabel?.text == "Pause") {
             delegate?.pauseTapped(self)
-            sender.setTitle("Resume", for: .normal)
-            
         } else {
             delegate?.resumeTapped(self)
-            sender.setTitle("Pause", for: .normal)
         }
     }
     
@@ -73,46 +73,81 @@ class SongTableViewCell: UITableViewCell, Cell {
     @IBAction func playButtonTapped(_ sender: Any) {
         
         let playButton = sender as! UIButton
-      
-        if !audioPlayer.isPlaying {
-            playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
-            audioPlayer.play()
-            
-        } else {
-            playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
-            audioPlayer.pause()
+        
+        if let track = track {
+            createAudioPlayer(with: track)
+            if !audioPlayer.isPlaying {
+                playButton.setImage(UIImage(systemName: "pause.circle"), for: .normal)
+                audioPlayer.play()
+                
+            } else {
+                playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+                audioPlayer.pause()
+            }
         }
     }
     
     //
     //MARK: - Display cell
     //
-    func visualizeCell(with track: Track, download: Download?) {
-        
+    //    func visualizeCell(with track: Track, download: Download?) {
+    //
+    //        songNameLabel.text = track.name
+    //        artistLabel.text = track.artist
+    //
+    //        if download?.track.isDownloaded ?? false {
+    //            downloadButton.isHidden = true
+    //            pauseButton.isHidden = true
+    //            cancelButton.isHidden = true
+    //            percentLabel.isHidden = true
+    //            downloadProgress.isHidden = true
+    //            playButton.isHidden = false
+    //
+    //            createAudioPlayer(with: track)
+    //
+    //        } else {
+    //            downloadButton.isHidden = false
+    //            pauseButton.isHidden = true
+    //            cancelButton.isHidden = true
+    //            percentLabel.isHidden = false
+    //            downloadProgress.isHidden = false
+    //
+    //            downloadProgress.progress = 0
+    //
+    //            percentLabel.text = "0% of 0.0 MB"
+    //        }
+    //    }
+    
+    func configure(track: Track, downloaded: Bool, download: Download?) {
         songNameLabel.text = track.name
         artistLabel.text = track.artist
         
-        if download?.track.isDownloaded ?? false {
-            downloadButton.isHidden = true
-            pauseButton.isHidden = true
-            cancelButton.isHidden = true
-            percentLabel.isHidden = true
-            downloadProgress.isHidden = true
-            playButton.isHidden = false
+        // Show/hide download controls Pause/Resume, Cancel buttons, progress info.
+        var showDownloadControls = false
+        
+        // Non-nil Download object means a download is in progress.
+        if let download = download {
+            showDownloadControls = true
             
-            createAudioPlayer(with: track)
-            
-        } else {
-            downloadButton.isHidden = false
-            pauseButton.isHidden = true
-            cancelButton.isHidden = true
-            percentLabel.isHidden = false
-            downloadProgress.isHidden = false
-            
-            downloadProgress.progress = 0
-            
-            percentLabel.text = "0% of 0.0 MB"
+            let title = download.isDownloading ? "Pause" : "Resume"
+            pauseButton.setTitle(title, for: .normal)
         }
+        
+        pauseButton.isHidden = !showDownloadControls
+        cancelButton.isHidden = !showDownloadControls
+        playButton.isHidden = !showDownloadControls
+       
+        downloadProgress.isHidden = !showDownloadControls
+        percentLabel.isHidden = !showDownloadControls
+        
+        // If the track is already downloaded, enable cell selection and hide the Download button, pause button, resume button.
+        selectionStyle = downloaded ? UITableViewCell.SelectionStyle.gray : UITableViewCell.SelectionStyle.none
+        downloadButton.isHidden = downloaded || showDownloadControls
+        pauseButton.isHidden = !downloaded
+        cancelButton.isHidden = !downloaded
+       
+//        self.track = track
+
     }
     
     private func createAudioPlayer(with track: Track) {
@@ -128,21 +163,26 @@ class SongTableViewCell: UITableViewCell, Cell {
         }
     }
     
-    func updateDisplay(progress: Float, totalSize : String, download: Download) {
-        
+    //    func updateDisplay(progress: Float, totalSize : String, download: Download) {
+    //
+    //        downloadProgress.progress = progress
+    //        percentLabel.text = String(format: "%.1f%% of %@", progress * 100, totalSize)
+    //
+    //        if download.isDownloading {
+    //            downloadButton.isHidden = true
+    //            pauseButton.isHidden = false
+    //            cancelButton.isHidden = false
+    //
+    //        } else {
+    //            downloadButton.isHidden = true
+    //            pauseButton.isHidden = false
+    //            cancelButton.isHidden = false
+    //        }
+    //    }
+    
+    func updateDisplay(progress: Float, totalSize : String) {
         downloadProgress.progress = progress
         percentLabel.text = String(format: "%.1f%% of %@", progress * 100, totalSize)
-        
-        if download.isDownloading {
-            downloadButton.isHidden = true
-            pauseButton.isHidden = false
-            cancelButton.isHidden = false
-            
-        } else {
-            downloadButton.isHidden = true
-            pauseButton.isHidden = false
-            cancelButton.isHidden = false
-        }
     }
 }
 

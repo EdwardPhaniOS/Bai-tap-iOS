@@ -13,7 +13,7 @@ class MyTableViewController: UITableViewController {
     let imageCache = NSCache<AnyObject, AnyObject>()
 
     let imageURLPaths = [
-        "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__480.jpg", "https://cdn.pixabay.com/photo/2019/12/23/15/07/freiburg-4714770__480.jpg", "https://cdn.pixabay.com/photo/2019/12/28/14/00/chrome-hill-4724723__480.jpg",
+        "https://images.pexels.com/photos/1236701/pexels-photo-1236701.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", "https://cdn.pixabay.com/photo/2019/12/23/15/07/freiburg-4714770__480.jpg", "https://cdn.pixabay.com/photo/2019/12/28/14/00/chrome-hill-4724723__480.jpg",
         "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__480.jpg", "https://cdn.pixabay.com/photo/2019/12/23/15/07/freiburg-4714770__480.jpg", "https://cdn.pixabay.com/photo/2019/12/28/14/00/chrome-hill-4724723__480.jpg",
         "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__480.jpg", "https://cdn.pixabay.com/photo/2019/12/23/15/07/freiburg-4714770__480.jpg", "https://cdn.pixabay.com/photo/2019/12/28/14/00/chrome-hill-4724723__480.jpg",
     ]
@@ -22,7 +22,7 @@ class MyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.rowHeight = 100
+        tableView.rowHeight = 200
     }
 
     // MARK: - Table view data source
