@@ -13,8 +13,9 @@ class ListToDoVC: UITableViewController {
     //
     //MARK: - Variable
     //
-    var itemKeys: [String] = []
     var items: [Item] = []
+    
+    let userDefault = UserDefaults.standard
 
     //
     //MARK: - View Life Cycle
@@ -25,20 +26,29 @@ class ListToDoVC: UITableViewController {
         fetchItems()
     }
     
-    func fetchItems() {
-        itemKeys = userDefault.object(forKey: "itemKeys") as? [String] ?? []
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        for key in itemKeys {
-            if let itemData = userDefault.object(forKey: key) as? Data {
-                do {
-                    let item = try JSONDecoder().decode(Item.self, from: itemData)
-                    self.items.append(item)
-                    
-                } catch {
-                    print("Decoding Error: \(error)")
-                }
+        print("viewWillAppear")
+    }
+    
+    func fetchItems() {
+        items.removeAll()
+        
+        let itemsData = userDefault.object(forKey: "arrayItems") as? [Data] ?? []
+        
+        for itemData in itemsData {
+            do {
+                let item = try JSONDecoder().decode(Item.self, from: itemData)
+                self.items.append(item)
+                print(item)
+                
+            } catch {
+                print("Decoding Error: \(error)")
             }
         }
+        
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -62,7 +72,7 @@ class ListToDoVC: UITableViewController {
         dateFormater.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let dateString = dateFormater.string(from: item.date)
         
-        cell.setUpUI(title: item.title, description: item.description, dateCreated: dateString)
+        cell.setUpUI(title: item.title, description: item.description, dateCreated: dateString, location: item.location)
         
         return cell
     }
@@ -72,10 +82,18 @@ class ListToDoVC: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoCreateItem" {
-            let createToDoVC = segue.destination as! CreateItemVC
+        if let createToDoVC = segue.destination as? CreateItemVC {
             createToDoVC.createItemDelegate = self
+            createToDoVC.currentItem = sender as? Item
         }
+    }
+    
+    //
+    //MARK: - Table View Delegate
+    //
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        self.performSegue(withIdentifier: "gotoCreateItem", sender: item)
     }
 }
 
@@ -84,23 +102,96 @@ class ListToDoVC: UITableViewController {
 //
 extension ListToDoVC: CreateItemVCDelegate {
     
-    func itemDidAdded() {
-
-        itemKeys = userDefault.object(forKey: "itemKeys") as? [String] ?? []
+    func itemDidAdded(item: Item) {
         
-        if let lastKey = itemKeys.last {
-            if let itemData = userDefault.object(forKey: lastKey) as? Data {
-                
-                do {
-                    let item = try JSONDecoder().decode(Item.self, from: itemData)
-                    self.items.append(item)
-                    
-                } catch {
-                    print("Decoding Error: \(error)")
-                }
-            }
+        //Save on UI
+        items.append(item)
+        tableView.reloadData()
+        
+        //Save on User default
+        
+        var itemsData = userDefault.object(forKey: "arrayItems") as? [Data] ?? []
+        
+        do {
+            let itemData = try JSONEncoder().encode(item)
+            itemsData.append(itemData)
             
-            tableView.reloadData()
+            userDefault.set(itemsData, forKey: "arrayItems")
+        } catch {
+            print("Error: \(error)")
         }
+        
+        
+       
+    }
+    
+    func itemEdited(newItem: Item) {
+        fetchItems()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//func itemDidAdded() {
+//
+//        itemKeys = userDefault.object(forKey: "itemKeys") as? [String] ?? []
+//
+//        if let lastKey = itemKeys.last {
+//            if let itemData = userDefault.object(forKey: lastKey) as? Data {
+//
+//                do {
+//                    let item = try JSONDecoder().decode(Item.self, from: itemData)
+//                    self.items.append(item)
+//
+//                } catch {
+//                    print("Decoding Error: \(error)")
+//                }
+//            }
+//
+//            tableView.reloadData()
+//        }
+//    }
+
+
+//func fetchItems() {
+//       items.removeAll()
+//       itemKeys.removeAll()
+//
+//       itemKeys = userDefault.object(forKey: "itemKeys") as? [String] ?? []
+//
+//       for key in itemKeys {
+//           if let itemData = userDefault.object(forKey: key) as? Data {
+//               do {
+//                   let item = try JSONDecoder().decode(Item.self, from: itemData)
+//                   self.items.append(item)
+//                   print(item)
+//
+//               } catch {
+//                   print("Decoding Error: \(error)")
+//               }
+//           }
+//       }
+//
+//       tableView.reloadData()
+//   }
