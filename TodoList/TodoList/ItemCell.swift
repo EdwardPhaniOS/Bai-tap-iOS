@@ -14,4 +14,9 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var cellDescription: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
     
+    func setUpUI(title: String, description: String, dateCreated: String) {
+        self.cellTitle.text = title
+        self.cellDescription.text = description
+        self.dateCreatedLabel.text = dateCreated
+    }
 }
