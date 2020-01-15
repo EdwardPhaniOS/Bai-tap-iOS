@@ -36,6 +36,36 @@ class ViewController: UIViewController {
             print("error creating table: \(errmsg)")
             return
         }
+        
+        //read Value
+        readValue()
+    }
+    
+    func readValue() {
+        var stmt: OpaquePointer?
+        
+        if sqlite3_prepare(db, "SELECT id, name, age from User", -1, &stmt, nil) != SQLITE_OK {
+            let errmsg = String(cString:
+                sqlite3_errmsg(db!))
+            print("failure preparing select: \(errmsg)")
+            return
+        }
+        
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            let id = sqlite3_column_int64(stmt, 0)
+            print("id = \(id);")
+            
+            if let cStringName = sqlite3_column_text(stmt, 1) {
+                let name = String(cString: cStringName)
+                print("name = \(name);", terminator: " ")
+                
+            } else {
+                print("name not found")
+            }
+            
+            let age = sqlite3_column_int(stmt, 2)
+            print("age = \(age)")
+        }
     }
     
     @IBAction func addButton_pressed(_ sender: UIButton) {
