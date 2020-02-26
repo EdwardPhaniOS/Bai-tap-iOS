@@ -46,8 +46,6 @@ class ViewController: UIViewController {
         myTableView.dataSource = self
         myTableView.delegate = self
         
-//        fetchDataFromCoreData()
-        
         setUpAddPersonAlert()
         setUpDeletePersonAlert()
     }
@@ -91,8 +89,6 @@ class ViewController: UIViewController {
                 let age = Int16(ageTextField.text!) ?? 0
                 
                 self.save(name: name, age: age)
-                
-//                self.fetchDataFromCoreData()
                 
                 self.myTableView.reloadData()
             }
