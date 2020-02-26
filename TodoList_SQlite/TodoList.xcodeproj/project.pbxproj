@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		874EBA8B23CF371B00872747 /* myDataBase.db in Resources */ = {isa = PBXBuildFile; fileRef = 874EBA8A23CF371B00872747 /* myDataBase.db */; };
+		874EBA8E23CF379100872747 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 874EBA8D23CF379100872747 /* libsqlite3.0.tbd */; };
 		87E719E923C887FF0065BB66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E719E823C887FF0065BB66 /* AppDelegate.swift */; };
 		87E719EB23C887FF0065BB66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E719EA23C887FF0065BB66 /* SceneDelegate.swift */; };
 		87E719F023C887FF0065BB66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E719EE23C887FF0065BB66 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		874EBA8A23CF371B00872747 /* myDataBase.db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = myDataBase.db; path = ../../SQLite/SQLite/myDataBase.db; sourceTree = "<group>"; };
+		874EBA8D23CF379100872747 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		87E719E523C887FF0065BB66 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E719E823C887FF0065BB66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87E719EA23C887FF0065BB66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,17 +41,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874EBA8E23CF379100872747 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		874EBA8C23CF379100872747 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				874EBA8D23CF379100872747 /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		87E719DC23C887FF0065BB66 = {
 			isa = PBXGroup;
 			children = (
 				87E719E723C887FF0065BB66 /* TodoList */,
 				87E719E623C887FF0065BB66 /* Products */,
+				874EBA8C23CF379100872747 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +76,7 @@
 		87E719E723C887FF0065BB66 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				874EBA8A23CF371B00872747 /* myDataBase.db */,
 				87E719E823C887FF0065BB66 /* AppDelegate.swift */,
 				87E719EA23C887FF0065BB66 /* SceneDelegate.swift */,
 				87E719EE23C887FF0065BB66 /* Main.storyboard */,
@@ -134,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874EBA8B23CF371B00872747 /* myDataBase.db in Resources */,
 				87E719F523C887FF0065BB66 /* LaunchScreen.storyboard in Resources */,
 				87E719F223C887FF0065BB66 /* Assets.xcassets in Resources */,
 				87E719F023C887FF0065BB66 /* Main.storyboard in Resources */,

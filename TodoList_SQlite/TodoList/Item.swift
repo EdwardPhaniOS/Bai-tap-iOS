@@ -9,15 +9,14 @@
 import Foundation
 import CoreLocation
 
-struct Item: Codable {
-    let uuid: String
+struct Item {
     var title: String
     var description: String
     var date: Date
     var location: Location?
 }
 
-struct Location: Codable {
+struct Location {
     let latitude: Float
     let longtitude: Float
 }

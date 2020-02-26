@@ -22,7 +22,6 @@ class CreateItemVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     weak var createItemDelegate: CreateItemVCDelegate?
-    var keys = [String]()
     var currentLocation: CLLocationCoordinate2D?
     var currentItem: Item?
     
@@ -31,12 +30,7 @@ class CreateItemVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keys = userDefault.object(forKey: "itemKeys") as? [String] ?? []
         
-        if let item = currentItem {
-            self.titleTextField.text = item.title
-            self.descriptionTextField.text = item.description
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +74,6 @@ class CreateItemVC: UIViewController {
         }
         
         let newItem = Item(
-            uuid: UUID().uuidString,
             title: self.titleTextField.text!,
             description: descriptionTextField.text!,
             date: Date(),
