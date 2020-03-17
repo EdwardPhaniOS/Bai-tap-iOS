@@ -25,4 +25,6 @@ class UserCell: UITableViewCell {
         delegate?.remove(at: self)
     }
     
+    
+    
 }

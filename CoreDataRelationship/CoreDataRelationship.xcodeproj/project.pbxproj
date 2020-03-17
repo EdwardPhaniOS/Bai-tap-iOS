@@ -21,6 +21,12 @@
 		BD71967B24069F2E00448374 /* ListUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD71967A24069F2E00448374 /* ListUserVC.swift */; };
 		BD7196802406A91400448374 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD71967E2406A91400448374 /* User+CoreDataClass.swift */; };
 		BD7196812406A91400448374 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD71967F2406A91400448374 /* User+CoreDataProperties.swift */; };
+		BDB1B98B2409033200FF3BAD /* UserTaskListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB1B98A2409033200FF3BAD /* UserTaskListVC.swift */; };
+		BDB1B98D2409034E00FF3BAD /* UserTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB1B98C2409034E00FF3BAD /* UserTaskCell.swift */; };
+		BDB1B98F2409045400FF3BAD /* ListUnAssignTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB1B98E2409045400FF3BAD /* ListUnAssignTask.swift */; };
+		BDB1B9912409046A00FF3BAD /* UnAssignTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB1B9902409046A00FF3BAD /* UnAssignTaskCell.swift */; };
+		BDB1B9952409224200FF3BAD /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB1B9942409224200FF3BAD /* TaskCell.swift */; };
+		BDB1B9972409226B00FF3BAD /* ListTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB1B9962409226B00FF3BAD /* ListTaskVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +46,12 @@
 		BD71967A24069F2E00448374 /* ListUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserVC.swift; sourceTree = "<group>"; };
 		BD71967E2406A91400448374 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BD71967F2406A91400448374 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BDB1B98A2409033200FF3BAD /* UserTaskListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTaskListVC.swift; sourceTree = "<group>"; };
+		BDB1B98C2409034E00FF3BAD /* UserTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTaskCell.swift; sourceTree = "<group>"; };
+		BDB1B98E2409045400FF3BAD /* ListUnAssignTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUnAssignTask.swift; sourceTree = "<group>"; };
+		BDB1B9902409046A00FF3BAD /* UnAssignTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnAssignTaskCell.swift; sourceTree = "<group>"; };
+		BDB1B9942409224200FF3BAD /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		BDB1B9962409226B00FF3BAD /* ListTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTaskVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +97,12 @@
 				BD71965F24068CC400448374 /* LaunchScreen.storyboard */,
 				BD71967A24069F2E00448374 /* ListUserVC.swift */,
 				BD71967824069E8C00448374 /* UserCell.swift */,
+				BDB1B98A2409033200FF3BAD /* UserTaskListVC.swift */,
+				BDB1B98C2409034E00FF3BAD /* UserTaskCell.swift */,
+				BDB1B98E2409045400FF3BAD /* ListUnAssignTask.swift */,
+				BDB1B9902409046A00FF3BAD /* UnAssignTaskCell.swift */,
+				BDB1B9962409226B00FF3BAD /* ListTaskVC.swift */,
+				BDB1B9942409224200FF3BAD /* TaskCell.swift */,
 				BD71966224068CC400448374 /* Info.plist */,
 				BD71965A24068CBF00448374 /* CoreDataRelationship.xcdatamodeld */,
 			);
@@ -163,11 +181,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD7196722406903600448374 /* Task+CoreDataClass.swift in Sources */,
+				BDB1B9952409224200FF3BAD /* TaskCell.swift in Sources */,
+				BDB1B9972409226B00FF3BAD /* ListTaskVC.swift in Sources */,
 				BD7196712406903600448374 /* Passport+CoreDataProperties.swift in Sources */,
+				BDB1B98D2409034E00FF3BAD /* UserTaskCell.swift in Sources */,
 				BD71965224068CBF00448374 /* AppDelegate.swift in Sources */,
+				BDB1B98F2409045400FF3BAD /* ListUnAssignTask.swift in Sources */,
 				BD71967524069CD200448374 /* Task+CoreDataProperties.swift in Sources */,
+				BDB1B9912409046A00FF3BAD /* UnAssignTaskCell.swift in Sources */,
 				BD7196802406A91400448374 /* User+CoreDataClass.swift in Sources */,
 				BD71965C24068CBF00448374 /* CoreDataRelationship.xcdatamodeld in Sources */,
+				BDB1B98B2409033200FF3BAD /* UserTaskListVC.swift in Sources */,
 				BD71965424068CBF00448374 /* SceneDelegate.swift in Sources */,
 				BD7196812406A91400448374 /* User+CoreDataProperties.swift in Sources */,
 				BD7196702406903600448374 /* Passport+CoreDataClass.swift in Sources */,
